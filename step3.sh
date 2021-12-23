@@ -268,7 +268,8 @@ if [ "${os}" != '"Arch Linux"' ]; then
                     y|Y|yes|Yes|YES)
                         echo 'GRUB_FORCE_HIDDEN_MENU="true"' >> /etc/deafult/grub
                         sudo rm -rf /etc/grub.d/31_hold_shift
-                        cp 31_hold_shift /etc/grub.d/
+                        pwd=`pwd`
+                        cp ${pwd}/31_hold_shift /etc/grub.d/
                         sudo chmod a+x /etc/grub.d/31_hold
                         sudo grub-mkconfig -o /boot/grub/grub.cfg
                         ;;
