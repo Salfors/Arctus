@@ -1,0 +1,2 @@
+# Arctus
+Arch Linux Installer
