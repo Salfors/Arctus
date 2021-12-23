@@ -1,3 +1,3 @@
 # Arctus
 Arch Linux Installer
-This is a beta version under testing 
+#This Is a Beta Version Under Testing 
