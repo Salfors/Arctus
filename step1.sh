@@ -330,17 +330,20 @@ if [ "${os}" != '"Arch Linux"' ]; then
                         read -p  "Enter Number : " MODE
                         case $MODE in 
                             "1")
-                                 Mode="BIOS"
+                                MODE="BIOS"
                                 echo ""
                                 echo -e "\n${SP} The Boot Mode In Which The Installation Will Be Performed Is {'${g}${MODE}${rt}${w}${bo}'}. ${EP}"
                                 echo -e "${SP} If it is not correct, try restarting the script and try again. ${EP}"
+                                sleep 4 
+                                break
                                 ;;
                             "2")
-                                Mode="UEFI"
+                                MODE="UEFI"
                                 echo ""
                                 echo -e "\n${SP} The Boot Mode In Which The Installation Will Be Performed Is {'${g}${MODE}${rt}${w}${bo}'}. ${EP}"
                                 echo -e "${SP} If it is not correct, try restarting the script and try again. ${EP}"
-                                sleep 4 ;;
+                                sleep 4 
+                                break ;;
 
                             *)
                                 echo -e "\n${SM} Choose Number One '1' or Two '2' ${EM}\n"
@@ -618,7 +621,8 @@ if [ "${os}" != '"Arch Linux"' ]; then
                     case $CS in
                         y|Y|yes|Yes|YES)
                             
-                            Partition_the_hard_disk ;;
+                            Partition_the_hard_disk
+                            Confirm_Disk_Partition_Table ;;
                         n|N|no|No|NO)
                             SwpS="${r}${bo}none${rt}${w}${bo}"
                             SwPP="  ${r}${bo}none${rt}${w}${bo}  "
@@ -1294,3 +1298,5 @@ if [ "${os}" != '"Arch Linux"' ]; then
 fi
 
 ##______________________________________________ENJOY WITH ARCH LINUX NOW ______________________________________##
+
+
