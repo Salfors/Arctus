@@ -788,6 +788,23 @@ if [ "${os}" != '"Arch Linux"' ]; then
         if [ "${DT}" == 'msdos' ]; then
             
             MS_PART
+            while true
+                do 
+                clear
+                echo -e "\n${SP}In the next step, confirm the changes with 'yes' in the Write option and type 'q' or press 'Quit' to continue ${EP}"
+                echo -e "${SE} This is Important ${EE}\n"
+                echo -e "${w}${bo}Press Enter To Continue${rt}"
+                read NC # NOte confirme
+                case $NC in 
+                    "")
+                        clear
+                        break ;;
+                    *)
+                        ;;
+                esac
+            done
+            cfdisk ${DISK}
+            clear
             function Sections_Format() {
 
                 echo "y" | mkfs.ext4 "${DISK}${ROOT}"
@@ -850,6 +867,23 @@ if [ "${os}" != '"Arch Linux"' ]; then
         #___________________IF IS GPT ON BIOS _______________#
         elif [ "${DT}" == 'gpt' ]; then
             GPT
+            while true
+                do 
+                clear
+                echo -e "\n${SP}In the next step, confirm the changes with 'yes' in the Write option and type 'q' or press 'Quit' to continue ${EP}"
+                echo -e "${SE} This is Important ${EE}\n"
+                echo -e "${w}${bo}Press Enter To Continue${rt}"
+                read NC # NOte confirme
+                case $NC in 
+                    "")
+                        clear
+                        break ;;
+                    *)
+                        ;;
+                esac
+            done
+            cfdisk ${DISK}
+            clear
             sleep 1
             function Sections_Format() {
 
@@ -928,6 +962,22 @@ if [ "${os}" != '"Arch Linux"' ]; then
         DT=`sudo parted ${DISK} print | grep -i '^Partition Table' | sed 's/Partition Table: //g'`
         if [ "${DT}" == 'msdos' ]; then
             MSPART
+            while true
+                do 
+                clear
+                echo -e "\n${SP}In the next step, confirm the changes with 'yes' in the Write option and type 'q' or press 'Quit' to continue ${EP}"
+                echo -e "${SE} This is Important ${EE}\n"
+                echo -e "${w}${bo}Press Enter To Continue${rt}"
+                read NC # NOte confirme
+                case $NC in 
+                    "")
+                        clear
+                        break ;;
+                    *)
+                        ;;
+                esac
+            done
+            cfdisk ${DISK}
             clear
             function Sections_Format() {
                 echo "y" | mkfs.fat -F32 "${DISK}${EFI}"         
@@ -997,6 +1047,23 @@ if [ "${os}" != '"Arch Linux"' ]; then
             
             ESP
             GPT  
+            while true
+                do 
+                clear
+                echo -e "\n${SP}In the next step, confirm the changes with 'yes' in the Write option and type 'q' or press 'Quit' to continue ${EP}"
+                echo -e "${SE} This is Important ${EE}\n"
+                echo -e "${w}${bo}Press Enter To Continue${rt}"
+                read NC # NOte confirme
+                case $NC in 
+                    "")
+                        clear
+                        break ;;
+                    *)
+                        ;;
+                esac
+            done
+            cfdisk ${DISK}
+            clear
             function Sections_Format() {
                 echo "y" | mkfs.fat -F32 "${DISK}${EFI}"  
                 echo "y" | mkfs.ext4 "${DISK}${ROOT}"
@@ -1073,5 +1140,3 @@ if [ "${os}" != '"Arch Linux"' ]; then
 fi
 
 ##______________________________________________ENJOY WITH ARCH LINUX NOW ______________________________________##
-
-
