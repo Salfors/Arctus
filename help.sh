@@ -1,11 +1,11 @@
 #--------------AUTO HELP--------------#
 DISK= 
-ROOT=
 SWAP=
 function help() {
      
-        umount -R /mnt ${DISK}${ROOT}
+        umount -R /mnt 
         swapoff ${DISK}${SWAP}
+        clear
 }
 help
 
@@ -15,11 +15,7 @@ help
 
 # Enter the following commands 
 
-# umount -R /mnt /dev/(Dedicated section for root) 
-
-#*EXAMPLE : *
-
-# umount -R /mnt /dev/vda5
+# umount -R /mnt 
 
 #Cancel the swap section 
 
