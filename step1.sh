@@ -737,8 +737,8 @@ if [ "${os}" != '"Arch Linux"' ]; then
 
         #### To prepare step 2 ####
         pwd=`pwd`
-        cp $pwd/Step2.sh /mnt
-        chmod a+x /mnt/Step2.sh
+        cp $pwd/step2.sh /mnt
+        chmod a+x /mnt/step2.sh
         echo "$DISK" > /mnt/ID
         echo "$MODE" > /mnt/GrubID
         sleep 1
