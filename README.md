@@ -6,49 +6,61 @@
 
 ## Usage
 
-1. download last arch-linux iso
+1. Download latest version __[arch-linux](https://archlinux.org/download/ )__
 
-https://archlinux.org
 
-2. brun iso on falsh 
-flah arch linux on you'r usb with rufus 
+2. Burn iso to usb
+   Do that with  __[Rufus](https://rufus.ie/en/ )__ or __[Etcher](https://www.balena.io/etcher/ )__
+   
+   or do that with this command
+   ```
+   sudo dd bs=4M if=file.iso of=/dev/sdX conv=fdatasync status=progress && sync
+   ```
 
 3. Update & upgrade packages and install git
 
     ```
-    pacman -Sy git --nonoconfirm
+    pacman -Sy git --noconfirm 
     ```
-4. Clonig && cd repo 
+4. Cloning && cd repo 
 
     ```
     git clone https://githu.com/Salfors/Arctus.git && cd Arctus/
     ```
-5. Give step1 Promison to start
+5. Give step 1 Permission to start
 
     ```
     chmod a+x step1.sh
     ```
-6. run step1 & fllow command
+6. Run step 1 & Follow the instructions
 
     ```
-    pacman -Sy git --nonoconfirm
+    ./step1.sh
     ```
     
-7. after install run step3 and then step4 after clonig repo again
+7. After install and first boot run step 3 and then step 4 after cloning repo again
 
     ```
     git clone https://githu.com/Salfors/Arctus.git && cd Arctus/ chmod a+x step3.sh step4.sh 
     ```
-8. run step3 
+8. Run step 3 
 
     ```
     ./step3.sh
     ```
- 9. run step4
+ 9. Run step 4
 
     ```
     ./step4.sh 
     ```
- 10. in then end i hope you enjoy with arch linux
+ 10. Finally, I hope you have fun with Arch Linux
+
+# Troubleshooting
+
+__[Arch Linux Installation Guide](https://github.com/rickellis/Arch-Linux-Install-Guide)__
+
+
+
+
 
     
