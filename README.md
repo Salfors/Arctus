@@ -25,7 +25,7 @@
 4. Cloning && cd repo 
 
     ```
-    git clone https://githu.com/Salfors/Arctus.git && cd Arctus/
+    git clone https://github.com/Salfors/Arctus.git && cd Arctus/
     ```
 5. Give step 1 Permission to start
 
