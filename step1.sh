@@ -294,10 +294,6 @@ if [ "${os}" != '"Arch Linux"' ]; then
 
         Mode=`ls /sys/firmware/efi`
         clear
-        sleep 1
-        echo -e "\n${b}================================"
-        echo -e "[---]    ${p}Live Boot Type${rt}${b}    [---]"
-        echo -e "================================${rt}\n"
         if $Mode >/dev/null 2>&1; then
                 MODE="BIOS"
         else
@@ -305,71 +301,7 @@ if [ "${os}" != '"Arch Linux"' ]; then
         fi
     }
     Direct_Boot_Mode
-    function CHECK_MODE() {
-        sleep 1
-        while true
-            do 
-            echo -e "\n${SP}THE CURRENT BOOT MODE IS {'${g}${MODE}${rt}${w}${bo}'}? ${EP}\n"
-            read -p "Please confirm [y/n] : " CM #Confirm MODE
-            case $CM in 
-                y|Y|yes|Yes|YES)
-                    break
-                    ;;
 
-                n|N|no|No|NO)
-                    clear
-                    sleep 1
-                    while true
-                        do 
-                                
-                        echo -e "\n${b}========================================"
-                        echo -e "[---]   ${p}Select Your Boot Type${rt}${b}      [---]"
-                        echo -e "========================================${rt}\n"
-                        echo -e "${g}${bo}+${rt}${SL1} ${w}${bo}BIOS Mode${rt}" # BIOS
-                        echo -e "${g}${bo}+${rt}${SL2} ${w}${bo}UEFI Mode${rt}\n" # UEFI
-                        read -p  "Enter Number : " MODE
-                        case $MODE in 
-                            "1")
-                                MODE="BIOS"
-                                echo ""
-                                echo -e "\n${SP} The Boot Mode In Which The Installation Will Be Performed Is {'${g}${MODE}${rt}${w}${bo}'}. ${EP}"
-                                echo -e "${SP} If it is not correct, try restarting the script and try again. ${EP}"
-                                sleep 4 
-                                break
-                                ;;
-                            "2")
-                                MODE="UEFI"
-                                echo ""
-                                echo -e "\n${SP} The Boot Mode In Which The Installation Will Be Performed Is {'${g}${MODE}${rt}${w}${bo}'}. ${EP}"
-                                echo -e "${SP} If it is not correct, try restarting the script and try again. ${EP}"
-                                sleep 4 
-                                break ;;
-
-                            *)
-                                echo -e "\n${SM} Choose Number One '1' or Two '2' ${EM}\n"
-                                count=`expr $count + 1`
-                                clean_screen ;;
-                        esac
-                        break             
-                    done
-                    break
-                    ;;
-                "")
-                    echo -e "\n${SP} Default Choose {'${MODE}'} ${EP}"
-                    sleep 5
-                    break ;;
-
-                *)
-                    echo -e "\n${SM} ENTER 'Yes' or 'No' !!!${EM}\n"
-                    count=`expr $count + 1`
-                    clean_screen
-                    ;;
-            esac
-            clean_screen 
-        done
-    }
-    CHECK_MODE
-        
     function Determine_Size() {
 
         #_____Determine the size of the root partition____#
@@ -493,161 +425,6 @@ if [ "${os}" != '"Arch Linux"' ]; then
         done
         }
         #Determine_Size
-
-        #Partition Table GPT/BIOS
-        function Partition_table_GB () {
-
-            echo -e "\n${b}${bo}
-            =====================================================================
-
-            ${StM}    ${DISK}                                                $EnM
-            ${StM}        |                                                   $EnM
-            ${StM}        |_ ${DISK}${ROOT}     ${RooP}GB      /ROOT     /mnt           $EnM
-            ${StM}        |                                                   $EnM
-            ${StM}        |_ ${HP}     ${HomepS}      /HOME     /mnt/home      $EnM
-            ${StM}        |                                                   $EnM
-            ${StM}        |_ ${SwPP}      ${SwpS}       SWAP     [SWAP]         $EnM
-            ${StM}                                                            $EnM
-
-            ${b}${bo}=====================================================================${rt}     
-            \n"
-        }
-
-        #Partition Table MSDOS/BIOS
-
-        function Partition_table_MB() {
-
-            echo -e "\n${b}${bo}
-            ==========================================================================
-
-            ${StM}    ${DISK}                                                     $EnM
-            ${StM}         |_${EXT}                                       $EnM
-            ${StM}             |                                                   $EnM
-            ${StM}             |                                                   $EnM
-            ${StM}             |_ ${DISK}${ROOT}     ${RooP}GB      /ROOT     /mnt           $EnM
-            ${StM}             |                                                   $EnM
-            ${StM}             |_ ${HP}     ${HomepS}      /HOME     /mnt/home      $EnM
-            ${StM}             |                                                   $EnM
-            ${StM}             |_ ${SwPP}      ${SwpS}       SWAP     [SWAP]         $EnM
-
-            ${b}${bo}===========================================================================${rt}     
-            \n"
-        }
-
-        #Partition Table GPT/UEFI
-
-        function Partition_table_GU() {
-
-            echo -e "\n${b}${bo}
-            =====================================================================
-
-            ${StM}    ${DISK}                                                $EnM
-            ${StM}        |                                                   $EnM
-            ${StM}        |_ ${DISK}${EFI}     512MB     /efi     /mnt/boot/efi   $EnM
-            ${StM}        |                                                   $EnM
-            ${StM}        |_ ${DISK}${ROOT}     ${RooP}GB      /ROOT     /mnt           $EnM
-            ${StM}        |                                                   $EnM
-            ${StM}        |_ ${HP}     ${HomepS}      /HOME     /mnt/home      $EnM
-            ${StM}        |                                                   $EnM
-            ${StM}        |_ ${SwPP}      ${SwpS}       SWAP     [SWAP]         $EnM
-            ${StM}                                                            $EnM
-
-            ${b}${bo}=====================================================================${rt}     
-            \n"
-        }
-
-        #Partition Table MSDOS/UEFI
-
-        function Partition_table_MU() {
-
-            echo -e "\n${b}${bo}
-            ==========================================================================
-
-            ${StM}    ${DISK}                                                     $EnM
-            ${StM}         |_${EXT}                                       $EnM
-            ${StM}             |                                                   $EnM
-            ${StM}             |_ ${DISK}${EFI}     512MB     /efi     /mnt/boot/efi   $EnM
-            ${StM}             |                                                   $EnM
-            ${StM}             |_ ${DISK}${ROOT}     ${RooP}GB      /ROOT     /mnt           $EnM
-            ${StM}             |                                                   $EnM
-            ${StM}             |_ ${HP}     ${HomepS}      /HOME     /mnt/home      $EnM
-            ${StM}             |                                                   $EnM
-            ${StM}             |_ ${SwPP}      ${SwpS}       SWAP     [SWAP]         $EnM
-
-            ${b}${bo}===========================================================================${rt}    
-            \n"
-        }
-
-        function Partition_the_hard_disk {
-            DTP=`sudo parted ${DISK} print | grep -i '^Partition Table' | sed 's/Partition Table: //g'`
-            if [ "${MODE}" == 'BIOS' ]; then
-                    if [ "$DTP" == "msdos" ]; then
-                        Partition_table_MB
-                    elif [ "$DTP" == "gpt" ]; then
-                        Partition_table_GB
-                    fi
-            elif [ "${MODE}" == "UEFI" ]; then
-                    if [ "$DTP" == "msdos" ]; then
-                        Partition_table_MU
-                    elif [ "$DTP" == "gpt" ]; then
-                        Partition_table_GU
-                    fi
-            fi
-        }
-
-        #Confirm disk partition table 
-        function Confirm_Disk_Partition_Table() {
-            while true
-                do
-                echo -e ""
-                read -p "Please confirm [y/n] : " DTSC #DISK TABLE SHOW CONFIRM
-                case DTSC in 
-                    y|Y|yes|Yes|YES)
-                        break ;;
-                    n)
-                        Determine_Size ;;
-                esac
-            done
-        }
-
-        function Show_Hard_Disk_Partitions {
-            EXT="${ES}GB [Extender]"  #Extender 
-            HomepS=${Homep}GB #Home Part Size
-            SwpS=${Swp}GB #Swap Size
-            HP=${DISK}${HOME} # Home Part
-            SwPP=${DISK}${SWAP} # SwaP Part 
-            case $CH in
-                y|Y|yes|Yes|YES)
-                    case $CS in
-                        y|Y|yes|Yes|YES)
-                            
-                            Partition_the_hard_disk
-                            Confirm_Disk_Partition_Table ;;
-                        n|N|no|No|NO)
-                            SwpS="${r}${bo}none${rt}${w}${bo}"
-                            SwPP="  ${r}${bo}none${rt}${w}${bo}  "
-                            Partition_the_hard_disk 
-                            Confirm_Disk_Partition_Table;;
-                    esac ;;
-                n|N|no|No|NO)
-
-                    case $CS in
-                        y|Y|yes|Yes|YES)
-
-                            HomepS="${r}${bo}none${rt}${w}${bo}"
-                            HP="  ${r}${bo}none${rt}${w}${bo}   "
-                            Partition_the_hard_disk 
-                            Confirm_Disk_Partition_Table;;
-                        n|N|no|No|NO)
-                            HomepS="${r}${bo}none${rt}${w}${bo}"
-                            HP="  ${r}${bo}none${rt}${w}${bo}   "
-                            SwpS="${r}${bo}none${rt}${w}${bo}"
-                            SwPP="  ${r}${bo}none${rt}${w}${bo}  "
-                            Partition_the_hard_disk
-                            Confirm_Disk_Partition_Table ;;
-                    esac ;;
-            esac
-        }
 
         function Extender() {
 
@@ -949,7 +726,7 @@ if [ "${os}" != '"Arch Linux"' ]; then
         echo -e "or read the steps mentioned in it and execute them manually  ---"
         echo -e "--                and try again                           ------"
         echo -e "----------------------------------------------------------------\n${rt}"
-        sleep 10
+        sleep 20
         clear
         echo -e "${b}==========================================="
         echo -e "[---]   ${p}Arch Install on Main Drive${rt}${b}    [---]"
@@ -1004,7 +781,6 @@ if [ "${os}" != '"Arch Linux"' ]; then
         then       
         clear
         Determine_Size
-        Show_Hard_Disk_Partitions
         Extender
         clear
         echo -e ""
@@ -1145,7 +921,6 @@ if [ "${os}" != '"Arch Linux"' ]; then
         then
         clear
         Determine_Size
-        Show_Hard_Disk_Partitions
         Extender
         clear
         #_____________________ IF MSDOS ON UEFI __________________# 
