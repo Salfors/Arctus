@@ -28,6 +28,7 @@ EP=${rt}${g}${bo}[${rt}${y}${bo}+${rt}${g}${bo}]${rt} #End of the success of a P
 #------------------------------------------------------------------------------------------------------------#
 chmod a+x help.sh
 clear
+sleep 2
 echo -e "\n${p}${bo}
  ░░░░░  ░░░░░░   ░░░░░░ ░░░░░░░░ ░░    ░░ ░░░░░░░ 
 ▒▒   ▒▒ ▒▒   ▒▒ ▒▒         ▒▒    ▒▒    ▒▒ ▒▒      
@@ -310,7 +311,7 @@ if [ "${os}" != '"Arch Linux"' ]; then
         while true
             do
             echo -e "\n${b}======================================================"
-            echo -e "[---]  ${p}Determine the size of the Home partition${rt}${b}  [---]"
+            echo -e "[---]  ${p}Determine the size of the Root partition${rt}${b}  [---]"
             echo -e "======================================================${rt}\n"
             echo -e "\nNote:Enter Just The Number And Without GB or MB on Next steps"
             read -p "Please Enter Size For Root Partition : " RooP #Root Partition
@@ -858,7 +859,6 @@ if [ "${os}" != '"Arch Linux"' ]; then
                 esac
                 pwd=`pwd`
                 sed -i "s%\(DISK=\).*%\1$DISK%" ${pwd}/help.sh
-                sed -i 's/ROOT=.*/ROOT='${ROOT}'/' ${pwd}/help.sh
                 sed -i 's/SWAP=.*/SWAP='${SWAP}'/' ${pwd}/help.sh
             }
             Mount_Points
@@ -938,7 +938,6 @@ if [ "${os}" != '"Arch Linux"' ]; then
                 esac
                 pwd=`pwd`
                 sed -i "s%\(DISK=\).*%\1$DISK%" ${pwd}/help.sh
-                sed -i 's/ROOT=.*/ROOT='${ROOT}'/' ${pwd}/help.sh
                 sed -i 's/SWAP=.*/SWAP='${SWAP}'/' ${pwd}/help.sh
             }
             Mount_Points
@@ -1032,7 +1031,6 @@ if [ "${os}" != '"Arch Linux"' ]; then
                 esac
                 pwd=`pwd`
                 sed -i "s%\(DISK=\).*%\1$DISK%" ${pwd}/help.sh
-                sed -i 's/ROOT=.*/ROOT='${ROOT}'/' ${pwd}/help.sh
                 sed -i 's/SWAP=.*/SWAP='${SWAP}'/' ${pwd}/help.sh
             }
             Mount_Points
@@ -1117,7 +1115,6 @@ if [ "${os}" != '"Arch Linux"' ]; then
                 esac
                 pwd=`pwd`
                 sed -i "s%\(DISK=\).*%\1$DISK%" ${pwd}/help.sh
-                sed -i 's/ROOT=.*/ROOT='${ROOT}'/' ${pwd}/help.sh
                 sed -i 's/SWAP=.*/SWAP='${SWAP}'/' ${pwd}/help.sh
             }
             Mount_Points
