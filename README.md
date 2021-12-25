@@ -25,7 +25,7 @@
 4. Cloning && cd repo 
 
     ```
-    git clone https://githu.com/Salfors/Arctus.git && cd Arctus/
+    git clone https://github.com/Salfors/Arctus.git && cd Arctus/
     ```
 5. Give step 1 Permission to start
 
@@ -41,7 +41,7 @@
 7. After install and first boot run step 3 and then step 4 after cloning repo again
 
     ```
-    git clone https://githu.com/Salfors/Arctus.git && cd Arctus/ chmod a+x step3.sh step4.sh 
+    git clone https://github.com/Salfors/Arctus.git && cd Arctus/ chmod a+x step3.sh step4.sh 
     ```
 8. Run step 3 
 
