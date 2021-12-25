@@ -1,16 +1,15 @@
 # Arctus
 
-# This Is a Beta Version Under Testing 
+# This Is a Beta Version Under Testing
 
 ## Arch Linux Installer
 
 ## Usage
 
-1. Download latest version __[arch-linux](https://archlinux.org/download/ )__
-
+ 1. Download latest version **[arch-linux](https://archlinux.org/download/)**
 
 2. Burn iso to usb
-   Do that with  __[Rufus](https://rufus.ie/en/ )__ or __[Etcher](https://www.balena.io/etcher/ )__
+    Do that with **[Rufus](https://rufus.ie/en/)** or **[Etcher](https://www.balena.io/etcher/)**
    
    or do that with this command
    ```
@@ -19,14 +18,16 @@
 
 3. Update & upgrade packages and install git
 
-    ```
-    pacman -Sy git --noconfirm
-    ```
-4. Cloning && cd repo 
+   ```
+   pacman -Sy git --noconfirm
+   ```
 
-    ```
-    git clone https://github.com/Salfors/Arctus.git && cd Arctus/
-    ```
+4. Cloning && cd repo
+
+   ```
+   git clone https://github.com/Salfors/Arctus.git && cd Arctus/
+   ```
+
 5. Give step 1 Permission to start
 
     ```
@@ -57,8 +58,7 @@
 
 # Troubleshooting
 
-__[Arch Linux Installation Guide](https://github.com/rickellis/Arch-Linux-Install-Guide)__
-
+ **[Arch Linux Installation Guide](https://github.com/rickellis/Arch-Linux-Install-Guide)**
 
 
 
