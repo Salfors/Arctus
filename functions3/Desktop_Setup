@@ -1,0 +1,23 @@
+function Desktop_Setup() {
+                clear
+                sleep 1 
+                while true
+                    do  
+                    echo -e "\n${b}======================================="
+                    echo -e "[---]  ${p}Desktop Environment Setup${rt}${b}  [---]"
+                    echo -e "=======================================${rt}\n"
+                    echo -e "${g}${bo}+${rt}${SL1} ${w}${bo}GNOME${rt}" 
+                    echo -e "${g}${bo}+${rt}${SL2} ${w}${bo}XFCE4${rt}" 
+                    echo -e "${g}${bo}+${rt}${SL3} ${w}${bo}KDE_PLASMA${rt}\n"  
+                    read -p "Choose A Desktop Environment : "  ENV
+                    case $ENV in 
+                        "1"|"2"|"3")
+                            break ;;
+                        *)
+                            echo -e "\n${SM} ENTER 'Yes' or 'No' !!! ${EM}\n" 
+                            count=`expr $count + 1`
+                            clean_screen ;;
+                    esac
+
+                done
+            }

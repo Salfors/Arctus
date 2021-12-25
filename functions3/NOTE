@@ -1,0 +1,20 @@
+function NOTE() {
+                clear
+                while true
+                    do 
+                    echo -e "\n${SP} ${r}${bo}Note${rt}:${w}${bo} The script is supposed to run one time after the first reboot, ${EP}"
+                    echo -e "${SP} of the newly installed system (after step 2), ${EP}"
+                    echo -e "${SP} because it cannot change the changes that have occurred After turning, ${EP}"
+                    echo -e "${SP} it on for the first time (step 3). ${EP}"
+                    echo -e "${SP} So make sure you make the changes well . ${EP}"
+                    echo -e "\n${w}${bo}Press Enter To Continue...${rt}"
+                    read CN #Confirm Note
+                    case $CN in 
+                        "")
+                            sleep 2
+                            break ;;
+                        *)
+                            ;;
+                    esac
+                done
+            }

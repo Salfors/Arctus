@@ -1,0 +1,21 @@
+function Packages() {
+                clear
+                sleep 1
+                while true
+                    do
+                    echo -e "\n${b}================================="
+                    echo -e "[---]  ${p}Base Packages Setup${rt}${b}   ---]"
+                    echo -e "=================================${rt}\n"
+                    echo -e "${g}${bo}+${rt}${SL1} ${w}${bo}Main Packages${rt}" 
+                    echo -e  "${g}${bo}+${rt}${SL2} ${w}${bo}Full Base Packages ${rt}${w}(take a time...)${rt}\n"
+                    read -p "Choose Your Packages Install Mode : " PM #Package mode
+                    if [ "$PM" == "1" ] ||  [ "$PM" == "2" ] ;then
+                        break
+                        else
+                        sleep 0.8
+                        echo -e "\n${SM} Choose an option from the options ${EM}\n"
+                        count=`expr $count + 1`
+                        clean_screen
+                    fi
+                done
+            }
