@@ -1,0 +1,46 @@
+function User_Account() {
+                clear
+                while true
+                    do
+                    echo -e "\n${b}==============================="
+                    echo -e "[---]    ${p}USER ACCOUNT${rt}${b}     [---]"
+                    echo -e "===============================${rt}\n"
+                    read -p  "do you want add new user [Y/N] : " user
+                    case $user in 
+                        y|Y|yes|Yes|YES)
+
+                            add_user
+                            while true 
+                                do
+                                clear
+                                echo -e "\n"
+                                read -p "Do You Want Anthore User [Y/N]: " new_user 
+                                case $new_user in 
+                                    y|Y|yes|Yes|YES)
+
+                                        add_user
+                                        ;;
+                                    n|N|no|No|NO)
+
+                                        break ;;
+                                    *)  
+                                        echo -e "\n${SM} ENTER 'Yes' or 'No' !!! ${EM}\n"
+                                        count=`expr $count + 1`
+                                        clean_screen ;;
+                                esac
+                            done
+                            break
+                            ;;
+                            
+                        n|N|no|No|NO)
+                            break 
+                            ;;
+                        *)
+                            echo -e "\n${SM} ENTER 'Yes' or 'No' !!! ${EM}\n"
+                            count=`expr $count + 1`
+                            clean_screen
+                            ;;
+                    esac
+
+                done
+            }

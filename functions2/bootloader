@@ -1,0 +1,18 @@
+function bootloader() {
+                clear
+                echo -e "\n${b}=========================================="
+                echo -e "[---]    ${p}Bootloader  Installation${rt}${b}    [---]"
+                echo -e "==========================================${rt}\n"
+                sleep 2
+                pacman -S --noconfirm efibootmgr grub
+                ID="`cat ID`"
+                GrubID="`cat GrubID`"
+
+                if [ "$GrubID" == "BIOS" ]; then  ######### IF IS BIOS MODE #######
+                    grub-install $ID 
+                    elif [ "$GrubID" == "UEFI" ]; then ### If Is Uefi MODE
+                    grub-install --target=x86_64-efi --efi--directory=/boot/efi --bootloader-id=GRUB --removable    
+                fi
+                grub-mkconfig -o /boot/grub/grub.cfg
+                clear
+            }

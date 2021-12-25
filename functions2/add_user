@@ -1,0 +1,107 @@
+function add_user() {
+                clear
+                echo -e "\n${b}=================================="
+                echo -e "[---]     ${p}User creation${rt}${b}      [---]"
+                echo -e "==================================${rt}\n"
+                username=""
+                while [ x$username = "x" ]; do
+
+                read -p "Please Enter the Username You Wish To Create : " username
+                if [ "${username}" == "" ]; then
+                    echo -e "\n${SM} Enter Something ${EM}\n"
+                    username=""
+                    count=`expr $count + 1`
+                    clean_screen
+                elif id -u $username >/dev/null 2>&1; then
+
+                echo -e "\n${SM} User already exists ${EM}\n"
+                count=`expr $count + 1`
+                clean_screen
+                username=""
+                fi
+                done
+              
+                echo -e "\n"
+                group=""
+                while [ x$group = "x" ]; do
+
+                read -p "Please Enter The Primary Group. If Group Not Exist, It Will Be Created : " group
+                if [ "$group" == "" ]; then
+                    echo -e "\n${SM} Enter Something !! ${EM}\n"
+                    group=""
+                    count=`expr $count + 1`
+                    clean_screen
+
+                elif id -g $group >/dev/null 2>&1; then
+                #clear
+                echo -e "\n${SP} Group Exist ${EP}"
+                count=`expr $count + 1`
+                clean_screen
+
+                fi
+                done
+                echo -e "\n"
+                read -p "Please Enter Bash [/bin/bash] : " bash
+
+                if [ x"$bash" = "x" ]; then
+
+                bash="/bin/bash"
+
+                fi
+
+                read -p "Please Enter Homedir [/home/$username] : " homedir
+
+                if [ x"$homedir" = "x" ]; then
+
+                homedir="/home/$username"
+
+                fi
+                function password() {
+                    #clear
+                    while true
+                        do
+                        echo -e ""
+                        read -p "Enter New Password For User : " password1
+                        read -p "Re-enter Password  : " password2
+                        if [ "$password1" != "$password2" ] 
+                            then
+                            echo -e "\n${SM}Two words that don't match, try again !!! ${EM}\n"
+                            count=`expr $count + 1`
+                            clean_screen
+                            elif [ "$password1" == "" ] &&  [ "$password2" == "" ] 
+                            then
+                            echo -e "\n${SM} Don't Leave It Blank, You Must Create a Password For Login ${EM}\n"
+                            count=`expr $count + 1`
+                            clean_screen
+                            elif [ "$password1" == "$password2" ]
+                            then
+                            groupadd $group
+                            useradd -g $group -s $bash -d $homedir -m $username
+                            sudo mkhomedir_helper $username
+                            sed -i '/root ALL=(ALL) ALL/a '${username}' ALL=(ALL) ALL' /etc/sudoers 
+                            echo  $username':'${password1} | chpasswd
+                            break
+                        fi
+                    done
+                }
+
+            echo -e ""
+                while true 
+                    read -p "Please Confirm [y/n] : " confirm
+                    do 
+                    case $confirm in 
+                        y|Y|yes|Yes|YES)
+
+                            password
+                            break ;;
+                        n|N|no|No|NO)
+                            clear
+                            add_user ;;
+                        *)
+                            echo -e "\n${SM} ENTER 'Yes' or 'No' !!! ${EM}\n"
+                            count=`expr $count + 1`
+                            clean_screen ;;
+                    esac
+                done
+                
+            }
