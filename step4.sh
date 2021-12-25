@@ -53,7 +53,10 @@ case $user in
         cd ${HOME}/yay
         sudo rm -rf /var/lib/pacman/db.lck
         makepkg -si --noconfirm
+        cd ${HOME}
+
         clear
+
         echo -e "\n${y}-----------------------"
         echo "|   ${p}${bo}CLONING: ${rt}${b}${bo}YAOURT   ${y}|" 
         echo -e "-----------------------${rt}\n"
@@ -70,7 +73,9 @@ case $user in
         sudo rm -rf /var/lib/pacman/db.lck
         makepkg -si
         cd ${HOME}
+
         clear
+
         echo -e "\n${y}----------------------"
         echo "|   ${p}${bo}CLONING: ${rt}${b}${bo}PAKKU   ${y}|" 
         echo -e "----------------------${rt}\n"
@@ -80,7 +85,10 @@ case $user in
         cd ${HOME}pakku
         sudo rm -rf /var/lib/pacman/db.lck
         makepkg -si
+        cd ${HOME}
+
         clear
+
         echo -e "\n${y}-----------------------"
         echo "|  ${p}${bo}CLONING: ${rt}${b}${bo}AURUTILS  ${y}|" 
         echo -e "-----------------------${rt}\n"
@@ -90,7 +98,10 @@ case $user in
         cd ${HOME}/aurutils
         sudo rm -rf /var/lib/pacman/db.lck
         makepkg -si
+        cd ${HOME}
+
         clear
+
         echo -e "\n${y}-----------------------"
         echo "|  ${p}${bo}CLONING: ${rt}${b}${bo}PACM-AUR  ${y}|" 
         echo -e "-----------------------${rt}\n"
@@ -100,5 +111,6 @@ case $user in
         cd cd ${HOME}/pamac-aur
         sudo rm -rf /var/lib/pacman/db.lck
         makepkg -si
+        cd ${HOME}
     ;;
 esac
