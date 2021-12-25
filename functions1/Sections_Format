@@ -1,0 +1,37 @@
+function Sections_Format() {
+
+                echo "y" | mkfs.ext4 "${DISK}${ROOT}"
+                case $CH in 
+                    y|Y|yes|Yes|YES)
+
+                        case $CS in 
+                            y|Y|yes|Yes|YES)
+                                            
+                                echo "y" | mkfs.ext4 "${DISK}${HOME}" #partition (Home)
+                                mkswap "${DISK}${SWAP}" #partition (Swap)
+                                swapon "${DISK}${SWAP}" ;;
+
+                        esac 
+                        case $CS in 
+                            n|N|no|No|NO)
+                                echo "y" | mkfs.ext4 "${DISK}${HOME}" ;;
+                        esac
+                        ;;
+
+                    n|N|no|No|NO)
+
+                        case $CS in 
+                            y|Y|yes|Yes|YES)
+                                            
+                                mkswap "${DISK}${SWAP}" 
+                                swapon "${DISK}${SWAP}" ;;
+                        esac
+
+                        case $CS in 
+                            n|N|no|No|NO)
+                                ;;
+                                    
+                        esac
+                        ;;
+                esac 
+            }

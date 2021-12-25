@@ -1,0 +1,131 @@
+    #####################################################################################################################
+
+    #  NOTE: Every line Here Is Important Even If It Is Empty. If You Delete Any Line Here, It Will Be A Problem
+    #               You Must Understand How the "FDISK" Partition Works To Understand It
+
+    ################################################################################################################## 
+
+        
+ #------    CREATE MSDOS PARTITIONS ON BIOS & UEFI MODE -------#
+
+    function MS_PART () {
+    
+        function MSDOS(){
+                        
+            Check_Of_Extender
+            echo "n
+            e
+            
+            
+            +${ES}GB
+            w
+            "| fdisk ${DISK}
+            if [ "$MODE" == "UEFI" ]; then
+                    #___ efi part
+                echo "n
+                l
+                
+                +512M
+                w
+                "| fdisk ${DISK}
+                EFI=`sudo partx -rgo NR -n -1:-1 ${DISK}`
+            fi
+            echo "n  
+            l
+            
+            +${RooP}GB
+            w
+            "| fdisk ${DISK}
+            ROOT=`sudo partx -rgo NR -n -1:-1 ${DISK}`
+
+            case $CH in 
+                y|Y|yes|Yes|YES)
+
+                    case $CS in 
+                        y|Y|yes|Yes|YES)
+                            echo "
+                            n
+                            l
+                            
+                            +${Homep}GB
+                            w
+                            "| fdisk ${DISK}  
+                            HOME=`sudo partx -rgo NR -n -1:-1 ${DISK}`
+                                                                                                    
+                            echo "
+                            n
+                            l
+                            
+                            
+                            +${Swp}GB
+                            w
+                            "| fdisk ${DISK}
+                            SWAP=`sudo partx -rgo NR -n -1:-1 ${DISK}` ;;
+
+                    esac 
+                    case $CS in 
+                        n|N|no|No|NO)
+                            echo "
+                            n
+                            l
+                            
+                            
+                            +${Homep}GB
+                            w
+                            "| fdisk ${DISK}
+                            HOME=`sudo partx -rgo NR -n -1:-1 ${DISK}` ;;
+                    esac
+                    ;;
+
+                n|N|no|No|NO)
+
+                    case $CS in 
+
+                        y|Y|yes|Yes|YES)
+                            echo "
+                            n
+                            l
+                            
+                            
+                            +${Swp}GB
+                            w
+                            "| fdisk ${DISK}
+                            SWAP=`sudo partx -rgo NR -n -1:-1 ${DISK}` ;;
+                    esac
+
+                    case $CS in 
+                        n|N|no|No|NO) 
+                            ;;
+                                ### If Home And Swap Not Created
+                    esac
+                    ;;
+
+            esac
+            }
+
+            case $CH in
+                n|N|no|No|NO)
+                    case $CS in
+                        n|N|no|No|NO)
+
+                            echo "
+                            n
+                            p
+
+
+                            +${RooP}GB
+                            w
+                            "| fdisk ${DISK} 
+                            ROOT=`sudo partx -rgo NR -n -1:-1 ${DISK}`
+                            ;;
+                        *)
+                            MSDOS
+                            ;;
+
+                    esac
+                    ;;
+                *)
+                    MSDOS
+                    ;;
+                esac
+    }

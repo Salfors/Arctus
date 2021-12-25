@@ -1,0 +1,19 @@
+function Correctly_DISK() {
+                while true
+                    do 
+                    clear
+                    echo -e "\n${SP}In the next step, confirm the changes with 'yes' in the Write option and type 'q' or press 'Quit' to continue ${EP}"
+                    echo -e "${SE} This is Important ${EE}\n"
+                    echo -e "${w}${bo}Press Enter To Continue${rt}"
+                    read NC # NOte confirme
+                    case $NC in 
+                        "")
+                            clear
+                            break ;;
+                        *)
+                            ;;
+                    esac
+                done
+                cfdisk ${DISK}
+                clear
+            }

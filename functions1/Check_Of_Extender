@@ -1,0 +1,49 @@
+function Check_Of_Extender() {
+        sleep 1
+        while true
+            do 
+            count=0
+            echo -e "\n${b}========================================"
+            echo -e "[---]  ${p}Total Size For Installation${rt}${b}  [---]"
+            echo -e "========================================${rt}\n"
+            echo -e "\n${SP} Is This The Total Volume For The Operation ${p}${bo}${ES}${rt}${w}${bo}GB ? ${rt}${EP}\n" ###Extender Size
+            read -p "Enter 'Yes' To Continue or 'No' To Edit Size : " CES #Confirme Extender Size
+            case $CES in 
+                y|Y|yes|Yes|YES)
+                        break
+                        ;;
+
+                n|N|no|No|NO)
+                        clear
+                        sleep 1
+                        while true
+                            do 
+                            count=0
+                            echo -e "\n${b}================================"
+                            echo -e "[---]     ${p}Overall Size${rt}${b}     [---]"
+                            echo -e "================================${rt}\n"
+                            echo -e "On Next Step GB Is Default\n"
+                            read -p "Enter The Size With (number only): " ES
+                            if [ -z "${ES//[0-9]/}" -a ! -z "$ES" ]; then
+                                    clear
+                                    echo -e "\n${SP} The Size For The Process is ${p}${bo}${ES}${rt}${w}${bo}GB ${rt}${EP}\n"
+                                    echo -e "${SP} If it is not correct, try restarting the script and try again. ${EP}"
+                                    sleep 6
+                                    break
+                            else 
+                                    echo -e "\n${EM} Enter Just The Number Without GB or Valid Value !!${EM}\n"
+                                    count=`expr $count + 1`
+                            fi
+                            clean_screen
+                        done
+                        break
+                        ;;
+                *)
+                        echo -e "\n${SM} ENTER 'yes' or 'no' !!!${EM}\n"
+                        count=`expr $count + 1`
+                        ;;
+            esac
+            clean_screen 
+        done
+
+        }

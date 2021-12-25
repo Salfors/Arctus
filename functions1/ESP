@@ -1,0 +1,11 @@
+function ESP() {
+        #___ efi part
+        echo "n
+
+
+        +512M
+        w
+        " | fdisk ${DISK}
+        EFI=`sudo partx -rgo NR -n -1:-1 ${DISK}`
+
+    }

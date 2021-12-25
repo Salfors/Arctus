@@ -1,0 +1,16 @@
+function Mount_Points () {
+                        
+                mount "${DISK}${ROOT}" /mnt
+                case $CH in 
+                    y|Y|yes|Yes|YES)
+                        mkdir /mnt/home
+                        mount "${DISK}${HOME}" /mnt/home ;;
+
+                    n|N|no|No|NO)
+                                
+                        ;;
+                esac
+                pwd=`pwd`
+                sed -i "s%\(DISK=\).*%\1$DISK%" ${pwd}/help.sh
+                sed -i 's/SWAP=.*/SWAP='${SWAP}'/' ${pwd}/help.sh
+            }
