@@ -77,18 +77,18 @@ if [ "${os}" != '"Arch Linux"' ]; then
             clear
             echo "
             LANG=en_US.UTF-8
-            LC_CTYPE="en_US.UTF-8"
+            LC_CTYPE='en_US.UTF-8'
             LC_NUMERIC=ja_JP.utf8
             LC_TIME=ja_JP.utf8
-            LC_COLLATE="en_US.UTF-8"
+            LC_COLLATE='en_US.UTF-8'
             LC_MONETARY=ja_JP.utf8
-            LC_MESSAGES="en_US.UTF-8"
+            LC_MESSAGES='en_US.UTF-8'
             LC_PAPER=ja_JP.utf8
-            LC_NAME="en_US.UTF-8"
-            LC_ADDRESS="en_US.UTF-8"
-            LC_TELEPHONE="en_US.UTF-8"
+            LC_NAME='en_US.UTF-8'
+            LC_ADDRESS='en_US.UTF-8'
+            LC_TELEPHONE='en_US.UTF-8'
             LC_MEASUREMENT=ja_JP.utf8
-            LC_IDENTIFICATION="en_US.UTF-8"
+            LC_IDENTIFICATION='en_US.UTF-8'
             LC_ALL=
             " > /etc/locale.conf 
             locale -a
