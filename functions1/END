@@ -18,6 +18,7 @@ function END() {
 
         #### To prepare step 2 ####
         pwd=`pwd`
+        cp -r $pwd/functions2 /mnt
         cp $pwd/step2.sh /mnt
         chmod a+x /mnt/step2.sh
         echo "$DISK" > /mnt/ID
