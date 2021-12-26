@@ -11,6 +11,7 @@ function NOTE() {
                     read CN #Confirm Note
                     case $CN in 
                         "")
+                            clear
                             sleep 2
                             break ;;
                         *)
