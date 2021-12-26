@@ -96,7 +96,7 @@ if [ "${os}" != '"Arch Linux"' ]; then
             #-----Set keymaps
             localectl --no-ask-password set-keymap us
             #----------------
-
+            clear
             Host_Setup
             User_Account 
             Root_Password
