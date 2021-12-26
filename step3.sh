@@ -27,13 +27,13 @@ EP=${rt}${g}${bo}[${rt}${y}${bo}+${rt}${g}${bo}]${rt} #End of the success of a P
 #------------------------------------------------------------------------------------------------------------#
 clear
 sleep 2
-echo -e "${p}${bo}
+echo -e "\n${p}${bo}
  ░░░░░  ░░░░░░   ░░░░░░ ░░░░░░░░ ░░    ░░ ░░░░░░░ 
 ▒▒   ▒▒ ▒▒   ▒▒ ▒▒         ▒▒    ▒▒    ▒▒ ▒▒      
 ▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒         ▒▒    ▒▒    ▒▒ ▒▒▒▒▒▒▒${rt}
 ${b}${bo}▓▓   ▓▓ ▓▓   ▓▓ ▓▓         ▓▓    ▓▓    ▓▓      ▓▓ 
 ██   ██ ██   ██  ██████    ██     ██████  ███████${rt} 
-"
+\n"
 os=`cat /etc/*-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g'`
 if [ "${os}" != '"Arch Linux"' ]; then
     echo "You must be using Arch Linux to execute this script."
