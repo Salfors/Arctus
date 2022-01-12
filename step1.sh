@@ -120,9 +120,8 @@ elif [ "${os}" == '"Arch Linux"' ]; then  #----- check if is arch linux
 
         DT=`sudo parted ${DISK} print | grep -i '^Partition Table' | sed 's/Partition Table: //g'`
         if [ "${DT}" == 'msdos' ]; then
-            MSPART
-           Correctly_DISK
-            
+            MS_PART
+            Correctly_DISK
             Sections_Format
             Mount_Points
             mkdir /mnt/boot
