@@ -48,21 +48,22 @@ case $user in
         echo -e "--------------------${rt}\n"
         sleep 0.8
         cd ~
-        rm -rf yay/
+        sudo rm -rf yay/
         git clone "https://aur.archlinux.org/yay.git"
         cd ${HOME}/yay
         sudo rm -rf /var/lib/pacman/db.lck
         makepkg -si --noconfirm
         cd ${HOME}
-
+        sleep 1
+        
         clear
 
         echo -e "\n${y}-----------------------"
-        echo "|   ${p}${bo}CLONING: ${rt}${b}${bo}YAOURT   ${y}|" 
+        echo -e "|   ${p}${bo}CLONING: ${rt}${b}${bo}YAOURT   ${y}|" 
         echo -e "-----------------------${rt}\n"
         sudo pacman -S --needed base-devel git wget yajl
         cd /tmp
-        rm -rf package-query/
+        sudo rm -rf package-query/
         git clone https://aur.archlinux.org/package-query.git
         cd package-query/
         sudo rm -rf /var/lib/pacman/db.lck
@@ -73,16 +74,31 @@ case $user in
         sudo rm -rf /var/lib/pacman/db.lck
         makepkg -si
         cd ${HOME}
-
+        sleep 1
+        
+        clear
+        
+        echo -e "\n${y}-----------------------"
+        echo -e "|   ${p}${bo}CLONING: ${rt}${b}${bo}SNAPD   ${y}|" 
+        echo -e "-----------------------${rt}\n"        
+        cd ~
+        sudo rm -rf snapd/
+        git clone https://aur.archlinux.org/snapd.git
+        cd snapd
+        sudo rm -rf package-query/
+        makepkg -si
+        cd ${HOME}
+        sleep 1
+        
         clear
 
         echo -e "\n${y}----------------------"
-        echo "|   ${p}${bo}CLONING: ${rt}${b}${bo}PAKKU   ${y}|" 
+        echo -e "|   ${p}${bo}CLONING: ${rt}${b}${bo}PAKKU   ${y}|" 
         echo -e "----------------------${rt}\n"
         cd ~
         rm -rf pakku/
         git clone https://aur.archlinux.org/pakku.git
-        cd ${HOME}pakku
+        cd ${HOME}/pakku
         sudo rm -rf /var/lib/pacman/db.lck
         makepkg -si
         cd ${HOME}
@@ -90,7 +106,7 @@ case $user in
         clear
 
         echo -e "\n${y}-----------------------"
-        echo "|  ${p}${bo}CLONING: ${rt}${b}${bo}AURUTILS  ${y}|" 
+        echo -e "|  ${p}${bo}CLONING: ${rt}${b}${bo}AURUTILS  ${y}|" 
         echo -e "-----------------------${rt}\n"
         cd ~
         rm -rf aurutils/
@@ -103,7 +119,7 @@ case $user in
         clear
 
         echo -e "\n${y}-----------------------"
-        echo "|  ${p}${bo}CLONING: ${rt}${b}${bo}PACM-AUR  ${y}|" 
+        echo -e "|  ${p}${bo}CLONING: ${rt}${b}${bo}PACM-AUR  ${y}|" 
         echo -e "-----------------------${rt}\n"
         cd ~
         rm -rf pamac-aur
