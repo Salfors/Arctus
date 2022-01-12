@@ -76,7 +76,8 @@ elif [ "${os}" == '"Arch Linux"' ]; then  #----- check if is arch linux
     source $pwd/functions1/Correctly_DISK #Confirm changes to a hard disk and avoid error situations in some cases 
     source $pwd/functions1/Sections_Format #Carry out the necessary coordination for the system departments 
     source $pwd/functions1/Mount_Points # Loading system partitions to specific points 
-#---------------------------------------------------------#
+    
+    #---------------------------------------------------------#
 
     Hard_disk_selection
     EDIT_HARD_DISK
@@ -84,7 +85,8 @@ elif [ "${os}" == '"Arch Linux"' ]; then  #----- check if is arch linux
     Direct_Boot_Mode  
 
     if [ "$MODE" == "BIOS" ]  #-------IF IS BIOS MODE -------#
-        then       
+        then 
+        
         clear
         Determine_Size
         Extender
@@ -101,6 +103,7 @@ elif [ "${os}" == '"Arch Linux"' ]; then  #----- check if is arch linux
         #___________________IF IS GPT ON BIOS _______________#
 
         elif [ "${DT}" == 'gpt' ]; then
+        
             GPT
             Correctly_DISK
             Sections_Format
@@ -111,6 +114,7 @@ elif [ "${os}" == '"Arch Linux"' ]; then  #----- check if is arch linux
 
     elif [ "$MODE" == "UEFI" ] # ---------- IF IS UEFI MODE ---------#
         then
+        
         clear
         Determine_Size
         Extender
@@ -120,6 +124,7 @@ elif [ "${os}" == '"Arch Linux"' ]; then  #----- check if is arch linux
 
         DT=`sudo parted ${DISK} print | grep -i '^Partition Table' | sed 's/Partition Table: //g'`
         if [ "${DT}" == 'msdos' ]; then
+        
             MS_PART
             Correctly_DISK
             Sections_Format
@@ -143,7 +148,8 @@ elif [ "${os}" == '"Arch Linux"' ]; then  #----- check if is arch linux
             mkdir /mnt/boot/efi
             mount "${DISK}${EFI}" /mnt/boot/efi
             clear
-            END    
+            END  
+            
         fi 
     fi
 fi
