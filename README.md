@@ -16,47 +16,47 @@
    sudo dd bs=4M if=file.iso of=/dev/sdX conv=fdatasync status=progress && sync
    ```
    
-3. Then boot from USB
+## Then boot from USB
  
-4. Update & upgrade packages and install git
+3. Update & upgrade packages and install git
 
    ```
    pacman -Sy git --noconfirm
    ```
 
-5. Cloning && cd repo
+4. Cloning && cd repo
 
    ```
    git clone https://github.com/Salfors/Arctus.git && cd Arctus/
    ```
 
-6. Give step 1 Permission to start
+5. Give step 1 Permission to start
 
     ```
     chmod a+x step1.sh
     ```
-7. Run step 1 & Follow the instructions
+6. Run step 1 & Follow the instructions
 
     ```
     ./step1.sh
     ```
     
-8. After install and first boot run step 3 and then step 4 after cloning repo again
+7. After install and first boot run step 3 and then step 4 after cloning repo again
 
     ```
     git clone https://github.com/Salfors/Arctus.git && cd Arctus/ && chmod a+x step3.sh step4.sh
     ```
-9. Run step 3 
+8. Run step 3 
 
     ```
     ./step3.sh
     ```
- 10. Run step 4
+9. Run step 4
 
     ```
     ./step4.sh
     ```
- 11. Finally, I hope you have fun with Arch Linux
+ 10. Finally, I hope you have fun with Arch Linux
 
 # Troubleshooting
 
