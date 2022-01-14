@@ -16,7 +16,8 @@
    sudo dd bs=4M if=file.iso of=/dev/sdX conv=fdatasync status=progress && sync
    ```
    
-## Then boot from USB
+   
+## Then boot from USB ....
  
 3. Update & upgrade packages and install git
 
