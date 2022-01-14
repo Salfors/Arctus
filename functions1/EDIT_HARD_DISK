@@ -1,77 +1,70 @@
 function EDIT_HARD_DISK() {
-        count=0
-        clear
-        while true
-            do
-            echo -e "\n${SP}Note: This is a script that cannot detect if there is space available for installation${EP}"
-            echo -e "${w}${bo}..or if an extender already exists${rt}"
-            echo -e "${SP}So you have to make sure that you have enough space and that there is no pre-expanded in the next stage. ${EP}"
-            echo -e "\n${w}${bo}Press Enter To Continue${rt}"
-            read CN #Confirm Note
-            case $CN in 
-                "")
+    
+    count=0
+    clear  
+    echo -e "\n${SP}Note: This is a script that cannot detect if there is space available for installation${EP}"
+    echo -e "${w}${bo}..or if an extender already exists${rt}"
+    echo -e "${SP}So you have to make sure that you have enough space and that there is no pre-expanded in the next stage. ${EP}"
+    echo -e "${w}${bo}"
+    read -n 1 -s -r -p "Press any key to continue ..."
+    echo -e "${rt}"
+    clear
+    sleep 1
+    while true
+        do
+        echo -e "\n${b}====================================="
+        echo -e "[---]     ${p}Hard Disk Editor${rt}${b}      [---]"
+        echo -e "=====================================${rt}\n"
+        echo -e ""
+        read -p "Do You Want To Modify a Hard Disk [Y/N] ? : " HDEC # HARD DISK EDIT CONFIRM 
+            case $HDEC in 
+                y|Y|yes|Yes|YES)
                     clear
-                    sleep 1
                     while true
                         do
-                        echo -e "\n${b}====================================="
-                        echo -e "[---]     ${p}Hard Disk Editor${rt}${b}      [---]"
-                        echo -e "=====================================${rt}\n"
-                        echo -e ""
-                        read -p "Do You Want To Modify a Hard Disk [Y/N] ? : " HDEC # HARD DISK EDIT CONFIRM 
-                        case $HDEC in 
-                            y|Y|yes|Yes|YES)
-                                    clear
-                                    while true
-                                        do
-                                        echo -e "\nChoose Tool for Managing Hard Disk Partitions.\n"
-                                        echo -e "${y}${bo}***********${rt}\n"
-                                        echo -e "${SL}${w}${bo}fdisk${rt}"
-                                        echo -e "${SL}${w}${bo}cfdisk${rt}"
-                                        echo -e "${SL}${w}${bo}parted${rt}"
-                                        echo -e "${SL}${w}${bo}cgdisk${rt}"
-                                        echo -e "\n${y}${bo}***********${rt}\n"
-                                        read -p "Enter Your Favorite Tool : " TOOL ## TOOL TO EDIT DISK
-                                        case $TOOL in 
-                                            fdisk|cfdisk|parted|cgdisk)
-                                                clear
-                                                ${TOOL} ${DISK}
-                                                clear
-                                                break
-                                                ;;
-                                            "")
-                                                echo -e "\n${SM} Sorry, Choose One From Them !!! ${EM}\n"
-                                                sleep 1
-                                                count=`expr $count + 1`
-                                                clean_screen
-                                                ;;
-                                            *)
-                                                echo -e "\n${SM} Enter The Tool Name Correctly!!! ${EM}\n"
-                                                sleep 1
-                                                count=`expr $count + 1`
-                                                clean_screen
-                                        esac
-                                    done
-                                    break              
-                                    ;;
-
-                            n|N|no|No|NO)
-                                sleep 1
+                        echo -e "\nChoose Tool for Managing Hard Disk Partitions.\n"
+                        echo -e "${y}${bo}***********${rt}\n"
+                        echo -e "${SL}${w}${bo}fdisk${rt}"
+                        echo -e "${SL}${w}${bo}cfdisk${rt}"
+                        echo -e "${SL}${w}${bo}parted${rt}"
+                        echo -e "${SL}${w}${bo}cgdisk${rt}"
+                        echo -e "\n${y}${bo}***********${rt}\n"
+                        read -p "Enter Your Favorite Tool : " TOOL ## TOOL TO EDIT DISK
+                        case $TOOL in 
+                            fdisk|cfdisk|parted|cgdisk)
+                                clear
+                                ${TOOL} ${DISK}
+                                clear
                                 break
                                 ;;
+                            "")
+                                echo -e "\n${SM} Sorry, Choose One From Them !!! ${EM}\n"
+                                sleep 1
+                                count=`expr $count + 1`
+                                clean_screen
+                                ;;
                             *)
-                                echo -e "\n${SM} ENTER 'Yes' or 'No' !!! ${EM}\n"
-                                count=`expr $count + 1` 
-                                sleep 1 
-                                clean_screen 
-                                ;;                      
+                                echo -e "\n${SM} Enter The Tool Name Correctly!!! ${EM}\n"
+                                sleep 1
+                                count=`expr $count + 1`
+                                clean_screen
+                                ;;
                         esac
-                        clean_screen
-                    done 
-                    break ;;
-                *)  
-                    clear ;;
+                    done
+                    break              
+                    ;;
 
+                n|N|no|No|NO)
+                    sleep 1
+                    break
+                    ;;
+                *)
+                    echo -e "\n${SM} ENTER 'Yes' or 'No' !!! ${EM}\n"
+                    count=`expr $count + 1` 
+                    sleep 1 
+                    clean_screen 
+                    ;;                      
             esac
-        done
-    }
+            clean_screen
+    done       
+}
