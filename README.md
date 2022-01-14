@@ -61,7 +61,7 @@
 
 # Troubleshooting
 
- **[Arch Linux Installation Guide](https://github.com/rickellis/Arch-Linux-Install-Guide)**
+ **[Arch Linux Installation Guide](https://wiki.archlinux.org/title/Installation_guide)**
 
 
 
