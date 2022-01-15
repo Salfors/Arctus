@@ -42,8 +42,7 @@ function Check_Of_Extender() {
                         
       *)
           echo -e "\n${SM} ENTER 'yes' or 'no' !!!${EM}\n"
-          count=`expr $count + 1` ;;
-                        
+          count=`expr $count + 1` ;;                   
     esac
     clean_screen 
 
