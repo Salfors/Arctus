@@ -1,116 +1,115 @@
 function Format_The_Hard_Disk (){
-            clear
-            count=0
-            sleep 1
-            while true
-                do 
-                echo -e "\n${b}====================================="
-                echo -e "[---]     ${p}Hard Disk Usage${rt}${b}       [---]"
-                echo -e "=====================================${rt}\n"
-                echo -e ""
-                echo -e "${SL1} ${w}${bo}Use it all and format the hard drive.${rt}"
-                echo -e "${SL2} ${w}${bo}Use only free disk space.${rt}"
-                echo -e ""
-                read -p "Do you want to use all disk for installation or just free space : " HDU  #Hard Disk Usage
-                #clear
-                if [ "$HDU" == "1" ]; then 
+    clear
+    count=0
+    sleep 1
+    while true
+        do 
+        echo -e "\n${b}====================================="
+        echo -e "[---]     ${p}Hard Disk Usage${rt}${b}       [---]"
+        echo -e "=====================================${rt}\n"
+        echo -e ""
+        echo -e "${SL1} ${w}${bo}Use it all and format the hard drive.${rt}"
+        echo -e "${SL2} ${w}${bo}Use only free disk space.${rt}"
+        echo -e ""
+        read -p "Do you want to use all disk for installation or just free space : " HDU  #Hard Disk Usage
+        #clear
+        if [ "$HDU" == "1" ]; then 
             
-                    clear
-                    sgdisk -Z ${DISK} # zap all on disk
-                    clear
-                    sleep 1
-                    while true 
-                        do
-                        echo -e "\n${b}============================================"
-                        echo -e "[---]  ${p}Hard disk partition table type${rt}${b}  [---]"
-                        echo -e "============================================${rt}\n"
-                        echo -e "${SL1} ${w}${bo}GPT${rt}"
-                        echo -e "${SL2} ${w}${bo}MSDOS${rt}"
-                        echo -e ""
-                        read -p "Do you want a 'GPT' or 'MSDOS' table for your hard disk : " HDT  #Hard Disk Table
-                        case $HDT in 
-                        "1")
-                            clear
-                            sgdisk -a 2048 -o ${DISK}  #Create new gpt table
-                            break
-                            ;;
-
-                        "2") # Create new msdos table
-                            clear
-                            echo "o
-                            w
-                            " | fdisk ${DISK} 
-                            break
-                            ;;
-
-                        *)
-                            echo -e "\n${SM} ENTER One '1' Or Two '2' !!!${EM}\n"
-                            count=`expr $count + 1`
-                            sleep 1
-                            clean_screen
-                            ;;
-                        esac
-                        clean_screen
-                    done    
-                    break
-                
-                elif [ "$HDU" == "2" ]; then
-                    count=0
-                    function Available_Table() {
-                        AODT=`sudo parted ${DISK} print | grep -i '^Partition Table' | sed 's/Partition Table: //g'` #Availability Of Disk Table 
+            clear
+            sgdisk -Z ${DISK} # zap all on disk
+            clear
+            sleep 1
+            while true 
+                do
+                echo -e "\n${b}============================================"
+                echo -e "[---]  ${p}Hard disk partition table type${rt}${b}  [---]"
+                echo -e "============================================${rt}\n"
+                echo -e "${SL1} ${w}${bo}GPT${rt}"
+                echo -e "${SL2} ${w}${bo}MSDOS${rt}"
+                echo -e ""
+                read -p "Do you want a 'GPT' or 'MSDOS' table for your hard disk : " HDT  #Hard Disk Table
+                case $HDT in 
+                    "1")
                         clear
-                        case $AODT in
-                            "unknown")
-                                    sleep 1
-                                    while true
-                                        do
-                                        echo -e "\n${b}============================================"
-                                        echo -e "[---]  ${p}Hard disk partition table type${rt}${b}  [---]"
-                                        echo -e "============================================${rt}\n"
-                                        echo "You don't have any hard disk table, Choose one"
-                                        echo -e ""
-                                        echo -e "${SL1} ${w}${bo}MSDOS${rt}"
-                                        echo -e "${SL2} ${w}${bo}GPT${rt}"
-                                        read -p "Your Choice : " NHDT #New Hard Disk Table
-                                        case $NHDT in 
-                                            "1")
-                                                clear
-                                                echo "o
-                                                w
-                                                "| fdisk ${DISK}
-                                                break
-                                                ;;
-                                            "2")
-                                                clear
-                                                sgdisk -a 2048 -o ${DISK} 
-                                                break
-                                                ;;
-                                            *)
-                                                echo -e "\n${SM} Choose Number 'One' or 'Two' ${EM}\n"
-                                                count=`expr $count + 1`
-                                                sleep 1
-                                                clean_screen
-                                                ;;
-                                        esac
-                                        clean_screen
-                                        
-                                    done
-                                    ;; 
-                                *)
-                                    break
-                                    ;;
-                        esac
+                        sgdisk -a 2048 -o ${DISK}  #Create new gpt table
+                        break ;;
+                            
 
-                    }
-                    Available_Table
-                    break 
-                else
-                echo -e "\n${SM} Choose Number 'One' or 'Two' ${EM}\n"
-                count=`expr $count + 1`
-                sleep 1
+                    "2") # Create new msdos table
+                        clear
+                        echo "o
+                        w
+                        " | fdisk ${DISK} 
+                        break ;;        
+
+                    *)
+                        echo -e "\n${SM} ENTER One '1' Or Two '2' !!!${EM}\n"
+                        count=`expr $count + 1`
+                        sleep 1
+                        clean_screen ;;
+                            
+                esac
                 clean_screen
-                fi
+            done    
+            break
                 
-            done
+        elif [ "$HDU" == "2" ]; then
+            count=0
+            function Available_Table() {
+                AODT=`sudo parted ${DISK} print | grep -i '^Partition Table' | sed 's/Partition Table: //g'` #Availability Of Disk Table 
+                clear
+                case $AODT in
+                    "unknown")
+
+                        sleep 1
+                        while true
+                            do
+                            echo -e "\n${b}============================================"
+                            echo -e "[---]  ${p}Hard disk partition table type${rt}${b}  [---]"
+                            echo -e "============================================${rt}\n"
+                            echo "You don't have any hard disk table, Choose one"
+                            echo -e ""
+                            echo -e "${SL1} ${w}${bo}MSDOS${rt}"
+                            echo -e "${SL2} ${w}${bo}GPT${rt}"
+                            read -p "Your Choice : " NHDT #New Hard Disk Table
+                            case $NHDT in 
+                                "1")
+                                    clear
+                                    echo "o
+                                    w
+                                    "| fdisk ${DISK}
+                                    break ;;
+                                                
+                                "2")
+                                    clear
+                                    sgdisk -a 2048 -o ${DISK} 
+                                    break ;;
+                                                
+                                *)
+                                    echo -e "\n${SM} Choose Number 'One' or 'Two' ${EM}\n"
+                                    count=`expr $count + 1`
+                                    sleep 1
+                                    clean_screen ;;
+                                                
+                            esac
+                            clean_screen
+                                        
+                        done ;; 
+                                    
+                    *)
+                        break ;;                 
+                esac
+
+            }
+            Available_Table
+            break 
+        else
+            echo -e "\n${SM} Choose Number 'One' or 'Two' ${EM}\n"
+            count=`expr $count + 1`
+            sleep 1
+            clean_screen
+        fi
                 
-    }
+    done
+                
+}
