@@ -5,7 +5,9 @@ function Correctly_DISK() {
   echo -e "${SE} This is Important ${EE}\n"
   echo -e "${w}${bo}"
   read -n 1 -s -r -p "Press any key to continue ..."
-  echo -e "${rt}"                
+  echo -e "${rt}"
+  clear 
+  sleep 2
   cfdisk ${DISK}
   clear
   
