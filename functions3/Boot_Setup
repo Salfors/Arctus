@@ -1,26 +1,31 @@
 function Boot_Setup() {
-                clear
-                case $ask2 in 
-                    y|Y|YES|Yes|yes)
-                        echo ""
-                        sleep 1
-                        while true 
-                            do
-                            echo -e "\n${b}==============================="
-                            echo -e "[---]     ${p}Boot Setup${rt}${b}      [---]"
-                            echo -e "===============================${rt}\n"
-                            read -p "Do you Wanna Hide Grub Menu  To Have a Quick Boot Up [Y/N]? : " ab # ask boot
-                            case $ab in 
-                                y|Y|yes|Yes|YES)
-                                    break ;;
-                                n|N|no|No|NO)
-                                    break ;;
-                                *)  
-                                    echo -e "\n${SM} ENTER 'Yes' or 'No' !!! ${EM}\n"
-                                    count=`expr $count + 1`
-                                    clean_screen ;;
-                            esac
-                        done
-                        ;;
-                esac  
-            }
+
+    clear
+    case $ask2 in 
+
+        y|Y|YES|Yes|yes)
+            echo ""
+            sleep 1
+            while true 
+                do
+                echo -e "\n${b}==============================="
+                echo -e "[---]     ${p}Boot Setup${rt}${b}      [---]"
+                echo -e "===============================${rt}\n"
+                read -p "Do you Wanna Hide Grub Menu  To Have a Quick Boot Up [Y/N]? : " ab # ask boot
+                case $ab in 
+                
+                    y|Y|yes|Yes|YES)
+                        break ;;
+
+                    n|N|no|No|NO)
+                        break ;;
+
+                    *)  
+                        echo -e "\n${SM} ENTER 'Yes' or 'No' !!! ${EM}\n"
+                        count=`expr $count + 1`
+                        clean_screen ;;
+                esac
+            done ;;
+                   
+    esac  
+}
