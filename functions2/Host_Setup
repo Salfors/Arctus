@@ -1,29 +1,29 @@
 function Host_Setup() {
 
-                while true
-                do
-                echo -e "\n${b}============================="
-                echo -e "[---]    ${p}Host Setup${rt}${b}     [---]"
-                echo -e "=============================${rt}\n"
-                read  -p "Enter your Host name (default==archPc) :" HostN
-                if [ "$HostN" != "" ]
-                    then
-                    echo "$HostN" > /etc/hostname
-                    echo "127.0.1.1	  localhost.localdomin	  $HostN" >> /etc/hosts
-                    break
-                    elif [ "$HostN" == "" ]
-                    then 
-                    echo "archPc" > /etc/hostname
-                    echo "127.0.1.1	  localhost.localdomin	  archPc"  > /etc/hosts
-                    break     
-                fi
-                done
-                clear
-                echo -e "\n${b}=================================="
-                echo -e "[---]     ${p}Network Setup${rt}${b}      [---]"
-                echo -e "==================================${rt}\n"
-                sleep 2
-                pacman -S networkmanager dhclient --noconfirm --needed
-                systemctl enable --now NetworkManager
-                clear
-            }
+    while true
+        do
+        echo -e "\n${b}============================="
+        echo -e "[---]    ${p}Host Setup${rt}${b}     [---]"
+        echo -e "=============================${rt}\n"
+        read  -p "Enter your Host name (default==archPc) :" HostN
+        if [ "$HostN" != "" ] ;; then
+                    
+            echo "$HostN" > /etc/hostname
+            echo "127.0.1.1	  localhost.localdomin	  $HostN" >> /etc/hosts
+            break
+        elif [ "$HostN" == "" ] ; then 
+                    
+            echo "archPc" > /etc/hostname
+            echo "127.0.1.1	  localhost.localdomin	  archPc"  > /etc/hosts
+            break     
+        fi
+    done
+    clear
+    echo -e "\n${b}=================================="
+    echo -e "[---]     ${p}Network Setup${rt}${b}      [---]"
+    echo -e "==================================${rt}\n"
+    sleep 2
+    pacman -S networkmanager dhclient --noconfirm --needed
+    systemctl enable --now NetworkManager
+    clear
+}
