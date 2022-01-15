@@ -1,27 +1,30 @@
 function Extender() {
 
-            case $CH in 
+    case $CH in 
+        y|Y|yes|Yes|YES)
+
+            case $CS in 
                 y|Y|yes|Yes|YES)
 
-                    case $CS in 
-                        y|Y|yes|Yes|YES)
-                                ES=`expr ${RooP} + ${Homep} + ${Swp}` ;; ###Extender Size
-                    esac 
-                    case $CS in 
-                        n|N|no|No|NO)
-                                ES=`expr ${RooP} + ${Homep}`;;
-                    esac
-                    ;;
+                    ES=`expr ${RooP} + ${Homep} + ${Swp}` ;; ###Extender Size
+
                 n|N|no|No|NO)
 
-                    case $CS in 
-                        y|Y|yes|Yes|YES)
-                                ES=`expr ${RooP} + ${Swp}` ;;
-                    esac
-                    case $CS in 
-                        n|N|no|No|NO)
-                                ;;
-                    esac
-                    ;;
-            esac
-        } 
+                    ES=`expr ${RooP} + ${Homep}` ;;
+
+            esac ;;
+            
+        n|N|no|No|NO)
+
+            case $CS in 
+                y|Y|yes|Yes|YES)
+
+                    ES=`expr ${RooP} + ${Swp}` ;;
+
+                n|N|no|No|NO)
+
+                    ;; # Root space will be the size of the expander 
+            esac ;;
+            
+    esac
+}
