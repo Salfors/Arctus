@@ -1,7 +1,8 @@
-    function Hard_disk_selection() {
-        count=0
-        clear
-        while true
+function Hard_disk_selection() {
+    
+    count=0
+    clear
+    while true
         do
         echo -e "\n${b}======================================================"
         echo -e "[---]     ${p}Select Your Disk To Installation${rt}${b}       [---]"
@@ -9,31 +10,32 @@
         lsblk
         echo -e "\nPlease Enter Disk: (example /dev/sda)\n"
         read DISK
-        if [ "$DISK" == "" ] 
-            then
+        if [ "$DISK" == "" ] ; then  
+
             echo -e "\n${SM} Choose The Disk To Install To !!!${EM}\n"
             sleep 1
             count=`expr $count + 1`
             sleep 1
             clean_screen
         
-            else
-                echo -e ""
-                read -p "Please confirm [y/n] : " HDC #HARD DISK CONFIRM 
-                case $HDC in 
-                    y|Y|yes|Yes|YES)
-                        sleep 1
-                        break ;;
-                    n|N|no|No|NO)
-                        sleep 1
-                        clear ;;
-                    *)
-                        echo -e "\n${SM} ENTER 'Yes' or 'No' !!! ${EM}\n"
-                        count=`expr $count + 1` 
-                        sleep 1 
-                        clean_screen  ;;
-                esac
+        else
+            echo -e ""
+            read -p "Please confirm [y/n] : " HDC #HARD DISK CONFIRM 
+            case $HDC in 
+                y|Y|yes|Yes|YES)
+                    sleep 1
+                    break ;;
+
+                n|N|no|No|NO)
+                    sleep 1
+                    clear ;;
+                *)
+                    echo -e "\n${SM} ENTER 'Yes' or 'No' !!! ${EM}\n"
+                    count=`expr $count + 1` 
+                    sleep 1 
+                    clean_screen  ;;
+            esac
         
         fi
-        done
-    } 
+    done
+} 
