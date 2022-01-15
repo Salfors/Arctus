@@ -1,72 +1,66 @@
 function GPT(){
-        echo "
-        n  
+    echo "
+    n  
 
 
-        +${RooP}GB
-        w
-        "| fdisk ${DISK} 
-        ROOT=`sudo partx -rgo NR -n -1:-1 ${DISK}`
+    +${RooP}GB
+    w
+    "| fdisk ${DISK} 
+    ROOT=`sudo partx -rgo NR -n -1:-1 ${DISK}`
 
-        case $CH in 
-            y|Y|yes|Yes|YES)
+    case $CH in 
+        y|Y|yes|Yes|YES)
 
-                case $CS in 
-                    y|Y|yes|Yes|YES)
+            case $CS in 
+                y|Y|yes|Yes|YES)
 
-                        echo "n
-
-
-                        +${Homep}GB
-                        w
-                        " | fdisk ${DISK}  
-                        HOME=`sudo partx -rgo NR -n -1:-1 ${DISK}`
-                                                        
-                        echo "
-                        n
+                    echo "n
 
 
-                        +${Swp}GB
-                        w
-                        "| fdisk ${DISK}
-                        SWAP=`sudo partx -rgo NR -n -1:-1 ${DISK}` ;;
-
-                esac 
-                case $CS in 
-                    n|N|no|No|NO)
-                        echo "
-                            n
-                            
-                            
-                            +${Homep}GB
-                            w
-                            "| fdisk ${DISK}
-                            HOME=`sudo partx -rgo NR -n -1:-1 ${DISK}` ;;
-                esac
-                ;;
-
-            n|N|no|No|NO)
-
-                case $CS in 
-                    y|Y|yes|Yes|YES)
-
-                        echo "
-                        n
+                    +${Homep}GB
+                    w
+                    " | fdisk ${DISK}  
+                    HOME=`sudo partx -rgo NR -n -1:-1 ${DISK}`
+                                                            
+                    echo "
+                    n
 
 
-                        +${Swp}GB
-                        w
-                        "| fdisk ${DISK}
-                        SWAP=`sudo partx -rgo NR -n -1:-1 ${DISK}` ;;
+                    +${Swp}GB
+                    w
+                    "| fdisk ${DISK}
+                    SWAP=`sudo partx -rgo NR -n -1:-1 ${DISK}` ;;
 
-                esac
 
-                case $CS in 
-                    n|N|no|No|NO) 
+                n|N|no|No|NO)
+                    echo "
+                    n
+                                
+                                
+                    +${Homep}GB
+                    w
+                    "| fdisk ${DISK}
+                    HOME=`sudo partx -rgo NR -n -1:-1 ${DISK}` ;;
+            esac ;;
+         
+        n|N|no|No|NO)
+
+            case $CS in 
+                y|Y|yes|Yes|YES)
+
+                    echo "
+                    n
+
+
+                    +${Swp}GB
+                    w
+                    "| fdisk ${DISK}
+                    SWAP=`sudo partx -rgo NR -n -1:-1 ${DISK}` ;;
+
+                n|N|no|No|NO) 
                         ;;
 
-                esac
-                ;;
-        esac   
+            esac ;;          
+    esac   
                         
-    }
+}
