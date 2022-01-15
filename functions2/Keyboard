@@ -6,8 +6,9 @@ function Keyboard() {
     echo -e "${w}${bo}"
     read -n 1 -s -r -p "Press any key to continue ..."
     echo -e "${rt}"
- 
+    sleep 1
     clear
+    
     while true
         do 
         echo -e "\n${b}====================================="
