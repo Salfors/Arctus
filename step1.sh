@@ -84,9 +84,8 @@ elif [ "${os}" == '"Arch Linux"' ]; then  #----- check if is arch linux
     Format_The_Hard_Disk
     Direct_Boot_Mode  
 
-    if [ "$MODE" == "BIOS" ]  #-------IF IS BIOS MODE -------#
-        then 
-        
+    if [ "$MODE" == "BIOS" ] ; then  #-------IF IS BIOS MODE -------#
+    
         clear
         Determine_Size
         Extender
@@ -100,6 +99,7 @@ elif [ "${os}" == '"Arch Linux"' ]; then  #----- check if is arch linux
             Mount_Points
             clear
             END
+            
         #___________________IF IS GPT ON BIOS _______________#
 
         elif [ "${DT}" == 'gpt' ]; then
@@ -112,8 +112,7 @@ elif [ "${os}" == '"Arch Linux"' ]; then  #----- check if is arch linux
             END
         fi
 
-    elif [ "$MODE" == "UEFI" ] # ---------- IF IS UEFI MODE ---------#
-        then
+    elif [ "$MODE" == "UEFI" ]; then # ---------- IF IS UEFI MODE ---------#
         
         clear
         Determine_Size
