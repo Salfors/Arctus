@@ -15,11 +15,7 @@ p='\033[0;35m' #> Purple
 SE=${r}${bo}[${rt}${y}${bo}!${rt}${r}${bo}]${rt}${w}${bo}${u} #Start Exclamation error 
 EE=${rt}${r}${bo}[${rt}${y}${bo}!${rt}${r}${bo}]${rt} #End of Exclamation error 
 
-#
-
 #------------------------------------------------------------------------------------------------------------#
-clear
-sleep 2
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #  ░░░░░  ░░░░░░   ░░░░░░ ░░░░░░░░ ░░    ░░ ░░░░░░░   #
@@ -33,8 +29,9 @@ user=`whoami`
 case $user in 
     "root")
         sleep 2 
-        echo -e "\n${SE} You Must Be a Normal User To Successfully Complete a Process !! ${EE}\n" 
-        ;;
+        clear
+        echo -e "\n${SE} You Must Be a Normal User To Successfully Complete a Process !! ${EE}\n" ;;
+        
     *)  
         clear
         echo -e "\n${y}--------------------"
@@ -86,43 +83,6 @@ case $user in
         cd ${HOME}
         sleep 1
         
-        clear
-
-        echo -e "\n${y}----------------------"
-        echo -e "|   ${p}${bo}CLONING: ${rt}${b}${bo}PAKKU   ${y}|" 
-        echo -e "----------------------${rt}\n"
-        cd ~
-        rm -rf pakku/
-        git clone https://aur.archlinux.org/pakku.git
-        cd ${HOME}/pakku
-        sudo rm -rf /var/lib/pacman/db.lck
-        makepkg -si
-        cd ${HOME}
-
-        clear
-
-        echo -e "\n${y}-----------------------"
-        echo -e "|  ${p}${bo}CLONING: ${rt}${b}${bo}AURUTILS  ${y}|" 
-        echo -e "-----------------------${rt}\n"
-        cd ~
-        rm -rf aurutils/
-        git clone https://aur.archlinux.org/aurutils.git
-        cd ${HOME}/aurutils
-        sudo rm -rf /var/lib/pacman/db.lck
-        makepkg -si
-        cd ${HOME}
-
-        clear
-
-        echo -e "\n${y}-----------------------"
-        echo -e "|  ${p}${bo}CLONING: ${rt}${b}${bo}PACM-AUR  ${y}|" 
-        echo -e "-----------------------${rt}\n"
-        cd ~
-        rm -rf pamac-aur
-        git clone https://aur.archlinux.org/pamac-aur.git
-        cd ${HOME}/pamac-aur
-        sudo rm -rf /var/lib/pacman/db.lck
-        makepkg -si
-        cd ${HOME}
-    ;;
+        clear ;;
+    
 esac
