@@ -48,7 +48,7 @@ case $user in
         echo -e "\n${y}--------------------"
         echo -e "|   ${p}${bo}CLONING: ${rt}${b}${bo}YAY${rt}   ${y}|" 
         echo -e "--------------------${rt}\n"
-        sleep 0.8
+        sleep 2
         cd ~
         sudo rm -rf yay/
         git clone "https://aur.archlinux.org/yay.git"
@@ -63,6 +63,7 @@ case $user in
         echo -e "\n${y}-----------------------"
         echo -e "|   ${p}${bo}CLONING: ${rt}${b}${bo}YAOURT   ${y}|" 
         echo -e "-----------------------${rt}\n"
+        sleep 2
         sudo pacman -S --needed base-devel git wget yajl
         cd /tmp
         sudo rm -rf package-query/
@@ -82,7 +83,8 @@ case $user in
         
         echo -e "\n${y}-----------------------"
         echo -e "|   ${p}${bo}CLONING: ${rt}${b}${bo}SNAPD   ${y}|" 
-        echo -e "-----------------------${rt}\n"        
+        echo -e "-----------------------${rt}\n"      
+        sleep 2
         cd ~
         sudo rm -rf snapd/
         git clone https://aur.archlinux.org/snapd.git
