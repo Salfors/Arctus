@@ -1,12 +1,6 @@
 function Direct_Boot_Mode () {  
 
   clear
-  Mode=`ls /sys/firmware/efi`
-  clear
-  if $Mode >/dev/null 2>&1; then
-    MODE="BIOS"
-  else
-    MODE="UEFI"
-  fi
-  
+  [ -d /sys/firmware/efi ] && MODE=UEFI || MODE=BIOS
+
 }
