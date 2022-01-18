@@ -120,7 +120,7 @@ case $user in
         cd ~
         rm -rf pamac-aur
         git clone https://aur.archlinux.org/pamac-aur.git
-        cd cd ${HOME}/pamac-aur
+        cd ${HOME}/pamac-aur
         sudo rm -rf /var/lib/pacman/db.lck
         makepkg -si
         cd ${HOME}
