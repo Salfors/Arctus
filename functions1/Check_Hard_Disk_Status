@@ -1,0 +1,35 @@
+function Check_Hard_Disk_Status() {
+
+    dcy=ON  # Simple way to know if you are in the EDIT_HARD_DISK job stage or in the current job
+    echo "F
+    n
+    " | fdisk ${DISK} > status.txt
+    ESE=`grep "${DISK}" status.txt | awk '{print $4}'`  #Empty space exists 
+    PRI=`grep "free" status.txt | awk '{print $7}'`  # PRIMAY
+    echo "p" | fdisk ${DISK} > status.txt
+    EXT=`grep "Extended" status.txt | awk '{print $7}' ` #Extended
+    rm -rf status.txt
+    clear
+    
+    if [ 1 -eq "$(echo "${ESE} <= ${ES}" | bc)" ]; then
+        echo -e "\n${SM}You Don't Have Enough Space To Install ${EM}\n" 
+        EDIT_HARD_DISK
+        Check_Hard_Disk_Status
+    fi
+
+    clear
+
+    if [ "$PRI" == "" ] ; then 
+        echo -e "\n${SM}All Primary Partitions Are In Use.${EM}\n"
+        EDIT_HARD_DISK
+        Check_Hard_Disk_Status
+    fi
+
+    clear
+
+    if [ "$EXT" = "Extended" ]; then 
+        echo -e "\n${SM}The Extended Partition Are In Use, And You Need One To Continue${EM}\n"
+        EDIT_HARD_DISK
+        Check_Hard_Disk_Status
+    fi
+}
