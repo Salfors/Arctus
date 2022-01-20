@@ -8,28 +8,42 @@ function Check_Hard_Disk_Status() {
     PRI=`grep "free" status.txt | awk '{print $7}'`  # PRIMAY
     echo "p" | fdisk ${DISK} > status.txt
     EXT=`grep "Extended" status.txt | awk '{print $7}' ` #Extended
+    DT=`sudo parted ${DISK} print | grep -i '^Partition Table' | sed 's/Partition Table: //g'`
     rm -rf status.txt
     clear
-    
-    if [ 1 -eq "$(echo "${ESE} <= ${ES}" | bc)" ]; then
-        echo -e "\n${SM}You Don't Have Enough Space To Install ${EM}\n" 
-        EDIT_HARD_DISK
-        Check_Hard_Disk_Status
-    fi
 
-    clear
+    case $DT in
+        "msdos")
 
-    if [ "$PRI" == "" ] ; then 
-        echo -e "\n${SM}All Primary Partitions Are In Use.${EM}\n"
-        EDIT_HARD_DISK
-        Check_Hard_Disk_Status
-    fi
+            if [ 1 -eq "$(echo "${ESE} <= ${ES}" | bc)" ]; then
+                echo -e "\n${SM}You Don't Have Enough Space To Install ${EM}\n" 
+                EDIT_HARD_DISK
+                Check_Hard_Disk_Status
+            fi
 
-    clear
+            clear
 
-    if [ "$EXT" = "Extended" ]; then 
-        echo -e "\n${SM}The Extended Partition Are In Use, And You Need One To Continue${EM}\n"
-        EDIT_HARD_DISK
-        Check_Hard_Disk_Status
-    fi
+            if [ "$PRI" == "" ] ; then 
+                echo -e "\n${SM}All Primary Partitions Are In Use.${EM}\n"
+                EDIT_HARD_DISK
+                Check_Hard_Disk_Status
+            fi
+
+            clear
+
+            if [ "$EXT" = "Extended" ]; then 
+                echo -e "\n${SM}The Extended Partition Are In Use, And You Need One To Continue${EM}\n"
+                EDIT_HARD_DISK
+                Check_Hard_Disk_Status
+            fi ;;
+
+        "gpt")
+
+            if [ 1 -eq "$(echo "${ESE} <= ${ES}" | bc)" ]; then
+                echo -e "\n${SM}You Don't Have Enough Space To Install ${EM}\n" 
+                EDIT_HARD_DISK
+                Check_Hard_Disk_Status
+            fi ;;
+    esac
+
 }
