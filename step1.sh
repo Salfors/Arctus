@@ -61,7 +61,8 @@ elif [ "${os}" == '"Arch Linux"' ]; then  #----- check if is arch linux
     #----------------source the function----------------# 
     
     pwd=`pwd`
-
+    
+    source $pwd/functions1/Check_Hard_Disk_Status #To check the  (free space, primary partitions available, and an extended partition available)
     source $pwd/functions1/Hard_disk_selection #Choosing a hard disk to install the system on 
     source $pwd/functions1/EDIT_HARD_DISK #Preparing the hard disk for the next stages 
     source $pwd/functions1/Format_The_Hard_Disk #Choose to format a hard disk or use an empty space 
@@ -88,6 +89,7 @@ elif [ "${os}" == '"Arch Linux"' ]; then  #----- check if is arch linux
     
         clear
         Determine_Size
+        Check_Hard_Disk_Status
         Extender
         clear
         echo -e ""
@@ -116,6 +118,7 @@ elif [ "${os}" == '"Arch Linux"' ]; then  #----- check if is arch linux
         
         clear
         Determine_Size
+        Check_Hard_Disk_Status
         Extender
         clear
 
