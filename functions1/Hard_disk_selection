@@ -19,8 +19,9 @@ function Hard_disk_selection() {
             clean_screen
         
         else
-            echo -e ""
+            echo -e "${w}${bo}"
             read -p "Please confirm [y/n] : " HDC #HARD DISK CONFIRM 
+            echo -e "${rt}"
             case $HDC in 
                 y|Y|yes|Yes|YES)
                     sleep 1
