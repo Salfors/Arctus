@@ -23,7 +23,7 @@ function Extender() {
 
                 n|N|no|No|NO)
 
-                    ;; # Root space will be the size of the expander 
+                    ES="${RooP}" ;; # Root space will be the size of the expander 
             esac ;;
             
     esac
