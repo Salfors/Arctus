@@ -16,7 +16,7 @@ function Check_Hard_Disk_Status() {
         "msdos")
 
             if [ 1 -eq "$(echo "${ESE} <= ${ES}" | bc)" ]; then
-                echo -e "\n${SM}You Don't Have Enough Space To Install ${EM}\n" 
+                echo -e "\n${SM} You Don't Have Enough Space To Install ${EM}\n" 
                 EDIT_HARD_DISK
                 Check_Hard_Disk_Status
             fi
@@ -24,7 +24,7 @@ function Check_Hard_Disk_Status() {
             clear
 
             if [ "$PRI" == "" ] ; then 
-                echo -e "\n${SM}All Primary Partitions Are In Use.${EM}\n"
+                echo -e "\n${SM} All Primary Partitions Are In Use. ${EM}\n"
                 EDIT_HARD_DISK
                 Check_Hard_Disk_Status
             fi
@@ -32,7 +32,7 @@ function Check_Hard_Disk_Status() {
             clear
 
             if [ "$EXT" = "Extended" ]; then 
-                echo -e "\n${SM}The Extended Partition Are In Use, And You Need One To Continue${EM}\n"
+                echo -e "\n${SM} The Extended Partition Are In Use, And You Need One To Continue ${EM}\n"
                 EDIT_HARD_DISK
                 Check_Hard_Disk_Status
             fi ;;
@@ -40,7 +40,7 @@ function Check_Hard_Disk_Status() {
         "gpt")
 
             if [ 1 -eq "$(echo "${ESE} <= ${ES}" | bc)" ]; then
-                echo -e "\n${SM}You Don't Have Enough Space To Install ${EM}\n" 
+                echo -e "\n${SM} You Don't Have Enough Space To Install ${EM}\n" 
                 EDIT_HARD_DISK
                 Check_Hard_Disk_Status
             fi ;;
