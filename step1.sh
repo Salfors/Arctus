@@ -89,8 +89,8 @@ elif [ "${os}" == '"Arch Linux"' ]; then  #----- check if is arch linux
     
         clear
         Determine_Size
-        Check_Hard_Disk_Status
         Extender
+        Check_Hard_Disk_Status
         clear
         echo -e ""
         DT=`sudo parted ${DISK} print | grep -i '^Partition Table' | sed 's/Partition Table: //g'`
@@ -118,8 +118,8 @@ elif [ "${os}" == '"Arch Linux"' ]; then  #----- check if is arch linux
         
         clear
         Determine_Size
-        Check_Hard_Disk_Status
         Extender
+        Check_Hard_Disk_Status
         clear
 
         #_____________________ IF MSDOS ON UEFI __________________# 
