@@ -416,40 +416,4 @@ function INSTALLATION() {
                 sudo ufw enable 
                 sudo systemctl enable  ufw.service
                 sudo pulseaudio --start 
-                #___Desktop Environment 
-                case $ENV in 
-                    "1")
-                        #gnome
-                        sudo pacman -S gnome --noconfirm
-                        sudo pacman -S gdm 
-                        systemctl stop  lightdm.service
-                        systemctl disable  lightdm.service
-                        systemctl stop  sddm.service
-                        systemctl disable  sddm.service
-                        systemctl enable  gdm.service
-                        systemctl start  gdm.service
-
-                        ;;
-                    "2")
-                        # "xfce4"
-                        sudo pacman -S  xfce4 xfce4-goodies lightdm lightdm-gtk-greeter --noconfirm
-                        systemctl stop  gdm.service
-                        systemctl disable gdm.service
-                        systemctl stop sddm.service
-                        systemctl disable  sddm.service
-                        echo "exec startxfce-4" > ~/.xinitrc
-                        systemctl enable lightdm.service
-                        systemctl start  lightdm.service
-                        ;;
-                    "3")
-                        # "KDE"
-                        sudo pacman -S xorg plasma plasma-wayland-session kde-applications --noconfirm
-                        systemctl stop --now lightdm.service
-                        systemctl disable --now lightdm.service
-                        systemctl stop --now gdm.service
-                        systemctl disable --now gdm.service
-                        systemctl enable --now sddm.service
-                        systemctl start --now sddm.service
-                        ;;
-                esac
             }
