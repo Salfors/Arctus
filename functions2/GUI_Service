@@ -1,0 +1,38 @@
+function GUI_Service () {
+   
+    echo " 
+    #!/bin/sh
+    [Unit]
+    Description=Service To Start Gui After Boot
+
+    [Service]
+    Type=simple
+    ExecStart=/usr/local/bin/Arctus
+    ExecStop=/usr/local/bin/stop stop 
+
+    [Install]
+    WantedBy=multi-user.target " > /etc/systemd/system/Arctus.service
+
+    case $ENV in 
+        "1")
+            #gnome
+            GS="sudo systemctl enable gdm.service && sudo systemctl start gdm.service" #gnome-start
+            echo "#!/bin/sh
+            ${GS}" > /usr/local/bin/Arctus
+            ;;
+        "2")
+            # "xfce4"
+            XS="sudo systemctl enable lightdm.service && sudo systemctl start lightdm.service && echo 'exec startxfce-4' > ~/.xinitrc" #xfce-start
+            echo "#!/bin/sh
+            ${XS}" > /usr/local/bin/Arctus
+            ;;
+        "3")
+            #KDE
+            KS="sudo systemctl enable sddm.service && sudo systemctl start sddm.service" #KDE-start
+            echo "#!/bin/sh
+            ${KS}" > /usr/local/bin/Arctus
+            ;;
+    esac
+    systemctl enable Arctus.service
+    systemctl start Arctus.service
+}
