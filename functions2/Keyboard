@@ -33,7 +33,7 @@ function Keyboard() {
                                 read -p "Please Confirm Changes [y/n] : " CONF #CONFIRM
                                 case $CONF in 
                                     y|Y|yes|Yes|YES)
-                                        call=1 
+                                        call=1 # to break loop
                                         break ;; 
                                         
                                     n|N|no|No|NO)
