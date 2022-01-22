@@ -105,6 +105,9 @@ if [ "${os}" != '"Arch Linux"' ]; then
             Desktop_Setup
             GUI_Service
             bootloader
+            systemctl restart Arctus.service
+            systemctl enable Arctus.service
+            systemctl start Arctus.service
 
             echo -e "${w}${bo}-------------------------------------------------------------------------"
             echo -e "--                                                                   ----"
