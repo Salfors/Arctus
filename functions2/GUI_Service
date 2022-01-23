@@ -33,6 +33,6 @@ function GUI_Service () {
             ${KS}" > /usr/local/bin/Arctus
             ;;
     esac
-    systemctl enable Arctus.service
-    systemctl start Arctus.service
+    #systemctl enable Arctus.service
+    #systemctl start Arctus.service
 }
