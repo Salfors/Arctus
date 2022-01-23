@@ -53,6 +53,8 @@ function EDIT_HARD_DISK() {
                     sleep 1
                     break
                 else 
+                    clear
+                    echo -e "\n${SE} Well You Can't Continue With The Installation  ${EE}\n"
                     exit 1
                 fi ;;
                 
