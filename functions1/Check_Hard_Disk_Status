@@ -4,7 +4,7 @@ function Check_Hard_Disk_Status() {
     echo "F
     n
     " | fdisk ${DISK} > status.txt
-    ESE=`grep "${DISK}" status.txt | awk '{print $4}'`  #Empty space exists 
+    ESE=`grep "${DISK}" status.txt | awk '{print $8}'`  #Empty space exists 
     PRI=`grep "free" status.txt | awk '{print $7}'`  # PRIMAY
     echo "p" | fdisk ${DISK} > status.txt
     EXT=`grep "Extended" status.txt | awk '{print $7}' ` #Extended
