@@ -1,16 +1,18 @@
 function Extender() {
-
+    B=`echo '1024^3' | bc` # To convert to bytes
     case $CH in 
         y|Y|yes|Yes|YES)
 
             case $CS in 
                 y|Y|yes|Yes|YES)
-
-                    ES=`expr ${RooP} + ${Homep} + ${Swp}` ;; ###Extender Size
+                
+                    ES=`echo "${RooP} + ${Homep} + ${Swp}" | bc`  ###Extender Size
+                    ES=`echo "${ES} * ${B}" | bc` ;;
 
                 n|N|no|No|NO)
-
-                    ES=`expr ${RooP} + ${Homep}` ;;
+                
+                    ES=`echo "${RooP} + ${Homep}" | bc`
+                    ES=`echo "${ES} * ${B}" | bc` ;;
 
             esac ;;
             
@@ -19,11 +21,12 @@ function Extender() {
             case $CS in 
                 y|Y|yes|Yes|YES)
 
-                    ES=`expr ${RooP} + ${Swp}` ;;
+                    ES=`echo "${RooP} + ${Swp}" | bc` 
+                    ES=`echo "${ES} * ${B}" | bc` ;;
 
                 n|N|no|No|NO)
 
-                    ES="${RooP}" ;; # Root space will be the size of the expander 
+                    ES=`echo "${RooP} * ${B}" | bc` ;; # Root space will be the size of the expander 
             esac ;;
             
     esac
