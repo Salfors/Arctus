@@ -9,7 +9,7 @@ function Host_Setup() {
         if [ "$HostN" != "" ] ;; then
                     
             echo "$HostN" > /etc/hostname
-            echo "127.0.1.1	  localhost.localdomin	  $HostN" >> /etc/hosts
+            echo "127.0.1.1	  localhost.localdomin	  $HostN" > /etc/hosts
             break
         elif [ "$HostN" == "" ] ; then 
                     
