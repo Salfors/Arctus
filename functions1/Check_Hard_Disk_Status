@@ -4,10 +4,10 @@ function Check_Hard_Disk_Status() {
     echo "F
     n
     " | fdisk ${DISK} > status.txt
-    ESE=`grep "${DISK}" status.txt | awk '{print $8}'`  #Empty space exists 
-    PRI=`grep "free" status.txt | awk '{print $7}'`  # PRIMAY
-    echo "p" | fdisk ${DISK} > status.txt
-    EXT=`grep "Extended" status.txt | awk '{print $7}' ` #Extended
+    ESE=`sed -rn 's/(^|(.* ))([^ ]*) bytes,(( .*)|$)/\3/; T; p; q' status.txt`  #Empty space exists 
+    PRI=`sed -n 's/.* extended, \([^ ]*\).*/\1/p' status.txt`  # PRIMAY
+    echo "p" | fdisk ${DISK} > status.txt 
+    EXT=`grep -o "Extended" status.txt` #Extended
     DT=`sudo parted ${DISK} print | grep -i '^Partition Table' | sed 's/Partition Table: //g'`
     rm -rf status.txt
     clear
