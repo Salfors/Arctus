@@ -37,123 +37,130 @@ ${b}${bo}▓▓   ▓▓ ▓▓   ▓▓ ▓▓         ▓▓    ▓▓    ▓�
 ██   ██ ██   ██  ██████    ██     ██████  ███████${rt} 
 "
 ##_________________________________________WELCOM TO "ARCTUS" __________________________________________________________________##
+LV=`lsblk | grep -o "/run/archiso/bootmnt"` # to check if is LIVE boot
 
-os=`cat /etc/*-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g'`
-if [ "${os}" != '"Arch Linux"' ]; then
-    echo -e "\n${SE}You must be using Arch Linux to execute this script.${EE}"
-    break
-elif [ "${os}" == '"Arch Linux"' ]; then  #----- check if is arch linux
-    sleep 3
-    #------In order to partition a disk----#
-    echo -e "\nInstalling prereqs...\n"
-    pacman -S --noconfirm gptfdisk btrfs-progs
-    clear
-    #------- to make clean screen with limit trying 
-    count=0
-    max=2
-    function clean_screen() {
-        if [ "$count" -eq "$max" ]; then
-            clear
-            count=`expr $count - 2`
-            fi
-    }
+if [ "$LV" == "" ];then
+  sleep 1
+  clear 
+  echo -e "\n${SE}You Should Boot From Usb To Run This Script.${EE}\n"
+  
+else
 
-    #----------------source the function----------------# 
-    
-    pwd=`pwd`
-    
-    source $pwd/functions1/Check_Hard_Disk_Status #To check the  (free space, primary partitions available, and an extended partition available)
-    source $pwd/functions1/Hard_disk_selection #Choosing a hard disk to install the system on 
-    source $pwd/functions1/EDIT_HARD_DISK #Preparing the hard disk for the next stages 
-    source $pwd/functions1/Format_The_Hard_Disk #Choose to format a hard disk or use an empty space 
-    source $pwd/functions1/Direct_Boot_Mode #Select live boot type
-    source $pwd/functions1/Determine_Size #Determine the size of the system partitions 
-    source $pwd/functions1/Extender # Specify an extended space in the case of an msdos table 
-    source $pwd/functions1/Check_Of_Extender #Check Space Extender  
-    source $pwd/functions1/MS_PART #Create system partitions in msdos table 
-    source $pwd/functions1/GPT #Create system partitions in gpt table 
-    source $pwd/functions1/ESP #Create efi partition in uefi boot state 
-    source $pwd/functions1/END #The end of the first step 
-    source $pwd/functions1/Correctly_DISK #Confirm changes to a hard disk and avoid error situations in some cases 
-    source $pwd/functions1/Sections_Format #Carry out the necessary coordination for the system departments 
-    source $pwd/functions1/Mount_Points # Loading system partitions to specific points 
-    
-    #---------------------------------------------------------#
+  os=`cat /etc/*-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g'`
+  if [ "${os}" != '"Arch Linux"' ]; then
+      echo -e "\n${SE}You must be using Arch Linux to execute this script.${EE}"
+      break
+  elif [ "${os}" == '"Arch Linux"' ]; then  #----- check if is arch linux
+      sleep 3
+      #------In order to partition a disk----#
+      echo -e "\nInstalling prereqs...\n"
+      pacman -S --noconfirm gptfdisk btrfs-progs
+      clear
+      #------- to make clean screen with limit trying 
+      count=0
+      max=2
+      function clean_screen() {
+          if [ "$count" -eq "$max" ]; then
+              clear
+              count=`expr $count - 2`
+              fi
+      }
 
-    Hard_disk_selection
-    EDIT_HARD_DISK
-    Format_The_Hard_Disk
-    Direct_Boot_Mode  
+      #----------------source the function----------------# 
+      
+      pwd=`pwd`
+      
+      source $pwd/functions1/Check_Hard_Disk_Status #To check the  (free space, primary partitions available, and an extended partition available)
+      source $pwd/functions1/Hard_disk_selection #Choosing a hard disk to install the system on 
+      source $pwd/functions1/EDIT_HARD_DISK #Preparing the hard disk for the next stages 
+      source $pwd/functions1/Format_The_Hard_Disk #Choose to format a hard disk or use an empty space 
+      source $pwd/functions1/Direct_Boot_Mode #Select live boot type
+      source $pwd/functions1/Determine_Size #Determine the size of the system partitions 
+      source $pwd/functions1/Extender # Specify an extended space in the case of an msdos table 
+      source $pwd/functions1/Check_Of_Extender #Check Space Extender  
+      source $pwd/functions1/MS_PART #Create system partitions in msdos table 
+      source $pwd/functions1/GPT #Create system partitions in gpt table 
+      source $pwd/functions1/ESP #Create efi partition in uefi boot state 
+      source $pwd/functions1/END #The end of the first step 
+      source $pwd/functions1/Correctly_DISK #Confirm changes to a hard disk and avoid error situations in some cases 
+      source $pwd/functions1/Sections_Format #Carry out the necessary coordination for the system departments 
+      source $pwd/functions1/Mount_Points # Loading system partitions to specific points 
+      
+      #---------------------------------------------------------#
 
-    if [ "$MODE" == "BIOS" ] ; then  #-------IF IS BIOS MODE -------#
-    
-        clear
-        Determine_Size
-        Extender
-        Check_Hard_Disk_Status
-        clear
-        echo -e ""
-        DT=`sudo parted ${DISK} print | grep -i '^Partition Table' | sed 's/Partition Table: //g'`
-        if [ "${DT}" == 'msdos' ]; then
-            MS_PART
-            Correctly_DISK
-            Sections_Format
-            Mount_Points
-            clear
-            END
-            
-        #___________________IF IS GPT ON BIOS _______________#
+      Hard_disk_selection
+      EDIT_HARD_DISK
+      Format_The_Hard_Disk
+      Direct_Boot_Mode  
 
-        elif [ "${DT}" == 'gpt' ]; then
-        
-            GPT
-            Correctly_DISK
-            Sections_Format
-            Mount_Points
-            clear
-            END
-        fi
+      if [ "$MODE" == "BIOS" ] ; then  #-------IF IS BIOS MODE -------#
+      
+          clear
+          Determine_Size
+          Extender
+          Check_Hard_Disk_Status
+          clear
+          echo -e ""
+          DT=`sudo parted ${DISK} print | grep -i '^Partition Table' | sed 's/Partition Table: //g'`
+          if [ "${DT}" == 'msdos' ]; then
+              MS_PART
+              Correctly_DISK
+              Sections_Format
+              Mount_Points
+              clear
+              END
+              
+          #___________________IF IS GPT ON BIOS _______________#
 
-    elif [ "$MODE" == "UEFI" ]; then # ---------- IF IS UEFI MODE ---------#
-        
-        clear
-        Determine_Size
-        Extender
-        Check_Hard_Disk_Status
-        clear
+          elif [ "${DT}" == 'gpt' ]; then
+          
+              GPT
+              Correctly_DISK
+              Sections_Format
+              Mount_Points
+              clear
+              END
+          fi
 
-        #_____________________ IF MSDOS ON UEFI __________________# 
+      elif [ "$MODE" == "UEFI" ]; then # ---------- IF IS UEFI MODE ---------#
+          
+          clear
+          Determine_Size
+          Extender
+          Check_Hard_Disk_Status
+          clear
 
-        DT=`sudo parted ${DISK} print | grep -i '^Partition Table' | sed 's/Partition Table: //g'`
-        if [ "${DT}" == 'msdos' ]; then
-        
-            MS_PART
-            Correctly_DISK
-            Sections_Format
-            Mount_Points
-            mkdir /mnt/boot
-            mkdir /mnt/boot/efi
-            mount "${DISK}${EFI}" /mnt/boot/efi
-            clear
-            END
+          #_____________________ IF MSDOS ON UEFI __________________# 
 
-        #________________________IF IS GPT ON UEFI _______________#
+          DT=`sudo parted ${DISK} print | grep -i '^Partition Table' | sed 's/Partition Table: //g'`
+          if [ "${DT}" == 'msdos' ]; then
+          
+              MS_PART
+              Correctly_DISK
+              Sections_Format
+              Mount_Points
+              mkdir /mnt/boot
+              mkdir /mnt/boot/efi
+              mount "${DISK}${EFI}" /mnt/boot/efi
+              clear
+              END
 
-        elif [ "${DT}" == 'gpt' ]; then
-            
-            ESP
-            GPT  
-            Correctly_DISK
-            Sections_Format
-            Mount_Points
-            mkdir /mnt/boot
-            mkdir /mnt/boot/efi
-            mount "${DISK}${EFI}" /mnt/boot/efi
-            clear
-            END  
-            
-        fi 
-    fi
-fi
+          #________________________IF IS GPT ON UEFI _______________#
 
-##_________________________________________________________ENJOY WITH ARCH LINUX NOW ________________________________________________________________________##
+          elif [ "${DT}" == 'gpt' ]; then
+              
+              ESP
+              GPT  
+              Correctly_DISK
+              Sections_Format
+              Mount_Points
+              mkdir /mnt/boot
+              mkdir /mnt/boot/efi
+              mount "${DISK}${EFI}" /mnt/boot/efi
+              clear
+              END  
+              
+          fi  # For Disk Table Type... ${DT}
+      fi # For MODE Type ... ${MODE}
+  fi # For OS kind check... ${os}
+fi #For Check If Is live boot... ${LV}
