@@ -25,18 +25,9 @@ EM=${rt}${r}${bo}[${rt}${y}${bo}-${rt}${r}${bo}]${rt} #End of Minus sign error
 SP=${g}${bo}[${rt}${y}${bo}+${rt}${g}${bo}]${rt}${w}${bo} #Start of the success of a Positive sign
 EP=${rt}${g}${bo}[${rt}${y}${bo}+${rt}${g}${bo}]${rt} #End of the success of a Positive sign
 
-#------------------------------------------------------------------------------------------------------------#
-chmod a+x help.sh
-clear
-sleep 2
-echo -e "\n${p}${bo}
- ░░░░░  ░░░░░░   ░░░░░░ ░░░░░░░░ ░░    ░░ ░░░░░░░ 
-▒▒   ▒▒ ▒▒   ▒▒ ▒▒         ▒▒    ▒▒    ▒▒ ▒▒      
-▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒         ▒▒    ▒▒    ▒▒ ▒▒▒▒▒▒▒${rt}
-${b}${bo}▓▓   ▓▓ ▓▓   ▓▓ ▓▓         ▓▓    ▓▓    ▓▓      ▓▓ 
-██   ██ ██   ██  ██████    ██     ██████  ███████${rt} 
-"
+
 ##_________________________________________WELCOM TO "ARCTUS" __________________________________________________________________##
+
 LV=`lsblk | grep -o "/run/archiso/bootmnt"` # to check if is LIVE boot
 
 if [ "$LV" == "" ];then
@@ -45,6 +36,18 @@ if [ "$LV" == "" ];then
   echo -e "\n${SE}You Should Boot From Usb To Run This Script.${EE}\n"
   
 else
+
+  chmod a+x help.sh
+  clear
+  sleep 2
+  echo -e "\n${p}${bo}
+  ░░░░░  ░░░░░░   ░░░░░░ ░░░░░░░░ ░░    ░░ ░░░░░░░ 
+  ▒▒   ▒▒ ▒▒   ▒▒ ▒▒         ▒▒    ▒▒    ▒▒ ▒▒      
+  ▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒         ▒▒    ▒▒    ▒▒ ▒▒▒▒▒▒▒${rt}
+  ${b}${bo}▓▓   ▓▓ ▓▓   ▓▓ ▓▓         ▓▓    ▓▓    ▓▓      ▓▓ 
+  ██   ██ ██   ██  ██████    ██     ██████  ███████${rt} 
+  "
+  #------------------------------------------------------------------------------------------------------------#
 
   os=`cat /etc/*-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g'`
   if [ "${os}" != '"Arch Linux"' ]; then
