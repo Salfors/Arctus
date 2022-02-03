@@ -67,8 +67,8 @@ if [ "${os}" != '"Arch Linux"' ]; then
             source $pwd/functions2/User_Account #Create a user account
             source $pwd/functions2/Root_Password #Set a password for the root user
             source $pwd/functions2/add_user #Add a new user 
-            source $pwd/functions2/Desktop_Setup #Desktop Setup
-            source $pwd/functions2/GUI_Service #To Start GUI 
+            #source $pwd/functions2/Desktop_Setup #Desktop Setup
+            #source $pwd/functions2/GUI_Service #To Start GUI 
             source $pwd/functions2/bootloader # install bootloader
 
             #-----------------------------------------------------------#
@@ -102,12 +102,10 @@ if [ "${os}" != '"Arch Linux"' ]; then
             Host_Setup
             User_Account 
             Root_Password
-            Desktop_Setup
-            GUI_Service
+            #Desktop_Setup
+            #GUI_Service
             bootloader
-            systemctl restart Arctus.service
-            systemctl enable Arctus.service
-            systemctl start Arctus.service
+            
 
             echo -e "${w}${bo}-------------------------------------------------------------------------"
             echo -e "--                                                                   ----"
