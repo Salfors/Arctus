@@ -58,7 +58,7 @@ if [ "${os}" != '"Arch Linux"' ]; then
 
             source $pwd/functions3/KERNEL_Preparation  # KERNEL Preparation 
             source $pwd/functions3/Boot_Setup # Boot Setup To hide grub menu to boot fast
-            # source $pwd/functions3/Desktop_Setup  #Desktop Setup 
+            source $pwd/functions3/Desktop_Setup  #Desktop Setup 
             source $pwd/functions3/Packages #Choose the installation mode of packages, basic or full 
             source $pwd/functions3/INSTALLATION  #Start the installation process 
             source $pwd/functions3/NOTE # NOTE
@@ -68,7 +68,7 @@ if [ "${os}" != '"Arch Linux"' ]; then
             NOTE
             KERNEL_Preparation
             Boot_Setup
-            # Desktop_Setup
+            Desktop_Setup
             Packages 
             INSTALLATION
             ;;
